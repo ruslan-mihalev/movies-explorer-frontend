@@ -1,5 +1,6 @@
 .app {
   display: block;
+  min-width: 320px;
   box-sizing: border-box;
   font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
