@@ -3,5 +3,7 @@
   box-sizing: border-box;
   font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
+  font-size: 100%;
+  line-height: normal;
   background-color: rosybrown;
 }

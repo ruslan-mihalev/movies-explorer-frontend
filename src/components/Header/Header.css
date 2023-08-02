@@ -1,4 +1,22 @@
 .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     min-height: 74px;
+    padding: 0 14px;
     background: #FF6838;
+    transition: padding-left 0.5s, padding-right 0.5s;
+}
+
+@media screen  and (min-width: 768px) {
+    .header {
+        padding: 0 30px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .header {
+        padding: 0 70px;
+    }
 }
