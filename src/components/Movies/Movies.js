@@ -4,10 +4,13 @@ import './Movies.css';
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import SearchForm from "../SearchForm/SearchForm";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 function Movies() {
     return (
         <div className="movies">
+            <Header/>
             <SearchForm/>
             <MoviesCardList>
                 <MoviesCard/>
@@ -16,6 +19,7 @@ function Movies() {
                 <MoviesCard/>
                 <MoviesCard/>
             </MoviesCardList>
+            <Footer/>
         </div>
     );
 }
