@@ -1,4 +1,8 @@
 .promo {
+    background: #465DFF;
+}
+
+.promo__hero {
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
@@ -6,11 +10,13 @@
     align-items: center;
     min-height: min(calc(100vh - 140px), 524px);
     padding: 10px;
-    background: url('../../images/ic_promo.svg') no-repeat center #465DFF;
+    background: url('../../images/ic_promo.svg') no-repeat center;
+    background-origin: content-box;
     transition: min-height 0.5s, padding-left 0.5s, padding-right 0.5s;
 }
 
 .promo__text {
+    align-self: center;
     max-width: 730px;
     margin: 0;
     padding: 0;
@@ -23,7 +29,7 @@
 }
 
 @media screen and (min-width: 768px) {
-    .promo {
+    .promo__hero {
         padding: 20px;
     }
     .promo__text {
@@ -34,7 +40,7 @@
 }
 
 @media screen and (min-width: 1024px) {
-    .promo {
+    .promo__hero {
         min-height: 524px;
     }
 }

@@ -13,8 +13,9 @@ import Footer from "../Footer/Footer";
 function Main() {
     return (
         <main className="main">
-            <Header/>
-            <Promo/>
+            <Promo>
+                <Header/>
+            </Promo>
             <NavTab/>
             <AboutProject/>
             <Techs/>
