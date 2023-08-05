@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './Field.css';
+import './InputField.css';
 
-function Field({
+function InputField({
                    labelText,
                    required,
                    inputName,
@@ -15,10 +15,10 @@ function Field({
                    errorText
                }) {
 
-    const inputClassName = `field-input ${ errorText ? 'field-input_errored' : ''}`;
+    const inputClassName = `input-field ${ errorText ? 'input-field_errored' : ''}`;
     return (
         <>
-            <label className='field-label'>{labelText}</label>
+            <label className='input-field-label'>{labelText}</label>
             <input
                 className={inputClassName}
                 name={inputName}
@@ -29,9 +29,9 @@ function Field({
                 placeholder={placeHolder}
                 value={value}
                 onChange={onChange}/>
-            {errorText ? (<span className='field-error'>{errorText}</span>) : null}
+            {errorText ? (<span className='input-field-error'>{errorText}</span>) : null}
         </>
     );
 }
 
-export default Field;
+export default InputField;

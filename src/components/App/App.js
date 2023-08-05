@@ -18,7 +18,7 @@ function App() {
               <Route path='/' element={ <Main /> } />
               <Route path='/movies' element={ <Movies /> } />
               <Route path='/saved-movies' element={ <SavedMovies /> } />
-              <Route path='/profile' element={ <Profile name={'Ruslan'} /> } />
+              <Route path='/profile' element={ <Profile name={'Виталий'} /> } />
               <Route path='/signin' element={ <Login /> } />
               <Route path='/signup' element={ <Register /> } />
               <Route path='*' element={ <NotFound /> } />

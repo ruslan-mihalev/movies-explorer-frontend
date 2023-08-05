@@ -24,7 +24,7 @@ function Auth({title, submitButtonText, onSubmitClick, linkLabel, linkText, link
                     <fieldset className='auth__fields-container'>
                         {children}
                     </fieldset>
-                    <SubmitButton text={submitButtonText}/>
+                    <SubmitButton text={submitButtonText} onClick={() => {}} style='accent'/>
                 </form>
                 <p className='auth__link-label'>{linkLabel}<Link className='auth__link-text'
                                                                  to={linkPath}>{linkText}</Link></p>

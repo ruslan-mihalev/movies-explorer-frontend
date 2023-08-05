@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Login.css';
 import Auth from '../Auth/Auth';
-import Field from '../Field/Field';
+import InputField from '../InputField/InputField';
 
 function Login() {
     return (
@@ -14,8 +14,8 @@ function Login() {
             linkText='Регистрация'
             linkPath='/signup'
         >
-            <Field labelText='E-mail' type='email' />
-            <Field labelText='Пароль' type='password' />
+            <InputField labelText='E-mail' type='email' />
+            <InputField labelText='Пароль' type='password' />
         </Auth>
     );
 }

@@ -2,7 +2,8 @@ import React from 'react';
 import './SubmitButton.css';
 
 function SubmitButton({ text, onClick, style, disabled }) {
-    return (<button className='submit-button' disabled={disabled} onClick={onClick}>{text}</button>);
+    const className = `submit-button ${ style === 'accent' ? 'submit-button_style_accent' : ''}`;
+    return (<button className={className} disabled={disabled} onClick={onClick}>{text}</button>);
 }
 
 export default SubmitButton;

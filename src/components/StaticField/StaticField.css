@@ -1,0 +1,24 @@
+.static-field__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 16px 0;
+}
+
+.static-field__container + .static-field__container {
+    border-top: #E8E8E8 solid 1px;
+}
+
+.static-field__label {
+    font-weight: 500;
+    font-size: 11px;
+    color: #000;
+}
+
+.static-field__value {
+    font-weight: 400;
+    font-size: 11px;
+    color: #000;
+}

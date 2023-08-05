@@ -13,7 +13,8 @@
     align-items: center;
     box-sizing: border-box;
     padding: 0 30px;
-    max-width: 410px;
+    min-width: 320px;
+    max-width: 470px;
     width: 100%;
 }
 
@@ -24,13 +25,40 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    background-color: darkgreen;
+}
+
+.profile__form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+}
+
+.profile__fields-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border: none;
 }
 
 .profile__buttons {
     display: flex;
     flex-direction: column;
     gap: 16px;
+}
+
+.profile__update-error {
+    display: block;
+    font-weight: 400;
+    font-size: 11px;
+    color: #FF004C;
+    text-align: center;
 }
 
 @media screen and (min-width: 768px) {

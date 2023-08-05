@@ -38,8 +38,13 @@ function Navigation({isAuthorized = true}) {
             <div className={mobileMenuClass}>
                 <div className='navigation__mobile-close-menu-button' onClick={handleMobileMenuToggleButton}/>
                 <nav className='navigation__movie-navigation-items-container'>
-                    <NavLink to='/movies' className='navigation__films navigation__films_selected'>Фильмы</NavLink>
-                    <NavLink to='/saved-movies' className='navigation__films'>Сохранённые фильмы</NavLink>
+                    <NavLink to='/'
+                             className={({isActive}) => `navigation__films ${isActive ? 'navigation__films_selected' : ''}`}>Главная</NavLink>
+                    <NavLink to='/movies'
+                             className={({isActive}) => `navigation__films ${isActive ? 'navigation__films_selected' : ''}`}>Фильмы</NavLink>
+                    <NavLink to='/saved-movies'
+                             className={({isActive}) => `navigation__films ${isActive ? 'navigation__films_selected' : ''}`}>Сохранённые
+                        фильмы</NavLink>
                 </nav>
                 <nav className='navigation__account-navigation-items-container'>
                     <NavLink to='/profile' className='navigation__account'>Аккаунт</NavLink>

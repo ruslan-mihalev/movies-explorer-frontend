@@ -4,17 +4,17 @@
     height: 45px;
     margin: 0;
     padding: 0;
-    font-weight: 500;
     text-align: center;
+    font-weight: 500;
     font-size: 12px;
     border: none;
     border-radius: 3px;
     color: #fff;
-    background: #FF6838;
+    background: #3456F3;
 }
 
 .submit-button_style_accent {
-    background: #3456F3;
+    background: #FF6838;
 }
 
 @media screen and (min-width: 768px) {
