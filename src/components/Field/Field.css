@@ -1,1 +1,42 @@
-.field {}
+.field-label {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 10px;
+    color: #A0A0A0;
+}
+
+.field-input {
+    margin: 10px 0 0 0;
+    padding: 15px;
+    font-weight: 500;
+    font-size: 13px;
+    border-radius: 8px;
+    border-width: 0;
+    background: #F9F9F9;
+    color: #000;
+}
+
+.field-input:focus {
+    outline: none;
+}
+
+.field-input_errored {
+    color: #EE3465;
+}
+
+.field-error {
+    margin: 10px 0 0 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 10px;
+    color: #EE3465;
+}
+
+.field-input + .field-label {
+    margin: 20px 0 0 0;
+}
+
+.field-error + .field-label {
+    margin: 20px 0 0 0;
+}

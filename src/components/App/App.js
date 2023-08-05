@@ -13,18 +13,17 @@ import Movies from "../Movies/Movies";
 
 function App() {
   return (
-      <div className='app'>
+      <main className='app'>
           <Routes>
               <Route path='/' element={ <Main /> } />
               <Route path='/movies' element={ <Movies /> } />
               <Route path='/saved-movies' element={ <SavedMovies /> } />
-              <Route path='/profile' element={ <Profile /> } />
+              <Route path='/profile' element={ <Profile name={'Ruslan'} /> } />
               <Route path='/signin' element={ <Login /> } />
               <Route path='/signup' element={ <Register /> } />
               <Route path='*' element={ <NotFound /> } />
           </Routes>
-          <Footer/>
-      </div>
+      </main>
   );
 }
 

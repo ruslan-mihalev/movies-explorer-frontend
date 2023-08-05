@@ -2,13 +2,22 @@ import React from 'react';
 
 import './Profile.css';
 import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import OutlineButton from "../OutlineButton/OutlineButton";
+import AccountTitle from "../AccountTitle/AccountTitle";
 
-function Profile() {
+function Profile({name}) {
     return (
-        <div className="profile">
+        <div className='profile'>
             <Header/>
-            <Footer/>
+            <div className='profile__container'>
+                <div className='profile__content'>
+                    <AccountTitle>Привет, {name}!</AccountTitle>
+                    <div className='profile__buttons'>
+                        <OutlineButton text='Редактировать' onClick={() => {}}/>
+                        <OutlineButton text='Выйти из аккаунта' onClick={() => {}} style='danger'/>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
