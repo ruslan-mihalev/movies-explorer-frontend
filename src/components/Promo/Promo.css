@@ -8,7 +8,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: min(calc(100vh - 140px), 524px);
+    min-height: calc(100vh - 140px);
     padding: 10px;
     background: url('../../images/ic_promo.svg') no-repeat center;
     background-origin: content-box;

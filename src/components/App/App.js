@@ -13,7 +13,7 @@ import Movies from "../Movies/Movies";
 
 function App() {
   return (
-      <main className='app'>
+      <div className='app'>
           <Routes>
               <Route path='/' element={ <Main /> } />
               <Route path='/movies' element={ <Movies /> } />
@@ -23,7 +23,7 @@ function App() {
               <Route path='/signup' element={ <Register /> } />
               <Route path='*' element={ <NotFound /> } />
           </Routes>
-      </main>
+      </div>
   );
 }
 

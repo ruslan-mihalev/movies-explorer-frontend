@@ -3,7 +3,7 @@ import React from 'react';
 import './AboutProject.css';
 
 function AboutProject() {
-    return (<div className="about-project"></div>);
+    return (<section className="about-project"></section>);
 }
 
 export default AboutProject;

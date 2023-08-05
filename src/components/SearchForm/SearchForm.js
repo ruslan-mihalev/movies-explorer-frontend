@@ -5,9 +5,9 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 function SearchForm() {
     return (
-        <div className="search-form">
+        <section className="search-form">
             <FilterCheckbox/>
-        </div>
+        </section>
     );
 }
 

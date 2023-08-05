@@ -14,8 +14,8 @@ function Auth({title, submitButtonText, onSubmitClick, linkLabel, linkText, link
     }, []);
 
     return (
-        <section className='auth'>
-            <div className='auth__container'>
+        <main className='auth'>
+            <section className='auth__container'>
                 <div className='auth__header'>
                     <Logo/>
                     <AccountTitle>{title}</AccountTitle>
@@ -28,8 +28,8 @@ function Auth({title, submitButtonText, onSubmitClick, linkLabel, linkText, link
                 </form>
                 <p className='auth__link-label'>{linkLabel}<Link className='auth__link-text'
                                                                  to={linkPath}>{linkText}</Link></p>
-            </div>
-        </section>
+            </section>
+        </main>
     );
 }
 

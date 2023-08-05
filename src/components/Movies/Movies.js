@@ -9,7 +9,7 @@ import Footer from "../Footer/Footer";
 
 function Movies() {
     return (
-        <div className="movies">
+        <main className="movies">
             <Header/>
             <SearchForm/>
             <MoviesCardList>
@@ -20,7 +20,7 @@ function Movies() {
                 <MoviesCard/>
             </MoviesCardList>
             <Footer/>
-        </div>
+        </main>
     );
 }
 

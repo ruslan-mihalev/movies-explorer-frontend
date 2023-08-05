@@ -22,10 +22,10 @@ function Profile({name}) {
     }, []);
 
     return (
-        <div className='profile'>
+        <main className='profile'>
             <Header/>
             <div className='profile__container'>
-                <div className='profile__content'>
+                <section className='profile__content'>
                     <AccountTitle>Привет, {name}!</AccountTitle>
                     {isModeEdit ? (
                         <form className='profile__form'>
@@ -54,9 +54,9 @@ function Profile({name}) {
                             </div>
                         </form>
                     )}
-                </div>
+                </section>
             </div>
-        </div>
+        </main>
     );
 }
 

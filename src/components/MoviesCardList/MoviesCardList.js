@@ -3,7 +3,7 @@ import React from 'react';
 import './MoviesCardList.css';
 
 function MoviesCardList() {
-    return (<div className="movies-card-list"></div>);
+    return (<section className="movies-card-list"></section>);
 }
 
 export default MoviesCardList;

@@ -3,7 +3,7 @@ import React from 'react';
 import './Techs.css';
 
 function Techs() {
-    return (<div className="techs"></div>);
+    return (<section className="techs"></section>);
 }
 
 export default Techs;
