@@ -1,10 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
 
 import './Navigation.css';
-import { NavLink } from 'react-router-dom';
-import { useMediaQuery } from '../../utils/hooks/useMediaQuery';
+import {NavLink} from 'react-router-dom';
+import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 
-function Navigation({isAuthorized = true}) {
+function Navigation({isAuthorized = false}) {
     const isDesktop = useMediaQuery('(min-width: 1024px)');
     const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
 
