@@ -1,0 +1,23 @@
+.simple-text {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+@media screen and (min-width: 768px) {
+    .simple-text {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .simple-text {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.43;
+    }
+}
