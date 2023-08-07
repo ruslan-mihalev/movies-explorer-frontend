@@ -20,7 +20,6 @@ function Main() {
             <AboutProject/>
             <Techs/>
             <AboutMe/>
-            <Portfolio/>
             <Footer/>
         </main>
     );
