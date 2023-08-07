@@ -12,7 +12,7 @@
     padding: 10px;
     background: url('../../images/ic_promo.svg') no-repeat center;
     background-origin: content-box;
-    transition: min-height 0.5s, padding-left 0.5s, padding-right 0.5s;
+    transition: min-height .5s, padding-top .5s, padding-right .5s, padding-bottom .5s, padding-left .5s;
 }
 
 .promo__text {
@@ -26,6 +26,7 @@
     font-weight: 400;
     line-height: 1.26;
     letter-spacing: -1px;
+    transition: font-size .5s;
 }
 
 @media screen and (min-width: 768px) {

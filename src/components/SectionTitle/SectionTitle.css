@@ -2,6 +2,7 @@
     box-sizing: border-box;
     padding: 0 0 28px 0;
     border-bottom: 1px solid #000;
+    transition: padding-bottom .5s;
 }
 
 .section-title__text {
@@ -10,6 +11,7 @@
     font-weight: 400;
     font-size: 18px;
     color: #000;
+    transition: font-size .5s;
 }
 
 @media screen and (min-width: 768px) {

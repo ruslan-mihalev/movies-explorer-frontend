@@ -3,7 +3,7 @@ import React from 'react';
 import './Footer.css';
 import { Link } from 'react-router-dom';
 
-function Footer () {
+function Footer() {
     return (
         <footer className="footer">
             <div className='footer__title-container'>
@@ -13,10 +13,12 @@ function Footer () {
                 <p className='footer__copyright'>©2020</p>
                 <ul className='footer__menu'>
                     <li className='footer__menu-item'>
-                        <Link className='footer__menu-link' to='https://practicum.yandex.ru/' target='_blank'>Яндекс.Практикум</Link>
+                        <Link className='footer__menu-link' to='https://practicum.yandex.ru/'
+                              target='_blank'>Яндекс.Практикум</Link>
                     </li>
                     <li className='footer__menu-item'>
-                        <Link className='footer__menu-link' to='https://github.com/ruslan-mihalev' target='_blank'>Github</Link>
+                        <Link className='footer__menu-link' to='https://github.com/ruslan-mihalev'
+                              target='_blank'>Github</Link>
                     </li>
                 </ul>
             </div>

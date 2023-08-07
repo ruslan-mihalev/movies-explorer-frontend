@@ -44,7 +44,7 @@
     border: none;
     box-shadow: none;
     background: url('../../images/ic_close.svg') no-repeat center / cover;
-    transition: margin-top 0.5s, margin-right 0.5s;
+    transition: margin-top .5s, margin-right .5s;
 }
 
 .navigation__mobile-style-container {
@@ -100,7 +100,7 @@
     text-decoration: none;
     color: #000;
     background: #2BE080;
-    transition: min-width 0.5s, min-height 0.5s;
+    transition: min-width .5s, min-height .5s;
 }
 
 .navigation__account {

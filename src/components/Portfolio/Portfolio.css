@@ -1,3 +1,4 @@
 .portfolio {
     background-color: darkgoldenrod;
+    transition: padding-top .5s, padding-right .5s, padding-bottom .5s, padding-left .5s;
 }

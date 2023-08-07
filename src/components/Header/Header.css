@@ -5,7 +5,7 @@
     align-items: center;
     min-height: 74px;
     padding: 0 14px;
-    transition: padding-left 0.5s, padding-right 0.5s;
+    transition: padding-left .5s, padding-right .5s;
     gap: 8px
 }
 

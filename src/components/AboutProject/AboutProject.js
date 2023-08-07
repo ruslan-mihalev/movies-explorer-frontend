@@ -7,7 +7,7 @@ import ArticleAboutProject from '../ArticleAboutProject/ArticleAboutProject';
 
 function AboutProject() {
     return (
-        <section id='about-project'>
+        <section className='about-project' id='about-project'>
             <div className='about-project__container'>
                 <SectionTitle>
                     О проекте
