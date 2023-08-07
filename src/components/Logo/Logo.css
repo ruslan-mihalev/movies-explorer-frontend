@@ -7,4 +7,5 @@
     background: url('./../../images/ic_logo.svg') no-repeat center / cover;
     border: none;
     box-shadow: none;
+    transition: width .5s, height .5s;
 }

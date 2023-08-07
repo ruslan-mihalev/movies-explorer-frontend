@@ -1,0 +1,111 @@
+.summary {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    align-items: stretch;
+    justify-content: space-between;
+    row-gap: 40px;
+    column-gap: 50px;
+}
+
+.summary__photo-container {
+    margin: 0 auto;
+}
+
+.summary__photo {
+    display: block;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    min-width: 255px;
+    max-width: 292px;
+    height: auto;
+    aspect-ratio: 0.83;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.summary__info-container {
+    flex: 2 2 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.summary__personal-info-container {
+    max-width: 600px;
+}
+
+.summary__name {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 30px;
+    color: #000;
+    transition: font-size .5s;
+
+}
+
+.summary__brief-info {
+    margin: 20px 0 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 1.45;
+    color: #000;
+    transition: font-size .5s;
+}
+
+.summary__detail-info {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.summary__github-link {
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    color: #000;
+}
+
+@media screen and (min-width: 768px) {
+    .summary {
+        flex-wrap: nowrap;
+    }
+
+    .summary__name {
+        font-size: 40px;
+        line-height: 1;
+    }
+
+    .summary__brief-info {
+        margin: 16px 0 0;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .summary__github-link {}
+}
+
+@media screen and (min-width: 1024px) {
+    .summary__name {
+        font-size: 50px;
+        line-height: 1.16;
+    }
+
+    .summary__brief-info {
+        margin: 18px 0 0;
+        font-size: 18px;
+        line-height: 1.11;
+    }
+
+    .summary__detail-info {
+        margin: 26px 0 0;
+    }
+
+    .summary__github-link {}
+}

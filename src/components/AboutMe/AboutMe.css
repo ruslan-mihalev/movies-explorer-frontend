@@ -1,20 +1,42 @@
 .about-me {
     margin: 0;
-    padding: 70px 14px;
+    padding: 70px 14px 50px;
     background: #fff;
     transition: padding-top .5s, padding-right .5s, padding-bottom .5s, padding-left .5s;
+}
+
+.about-me__summary {
+    margin: 60px 0 0;
+    transition: margin-top .5s, margin-right .5s, margin-bottom .5s, margin-left .5s;
+}
+
+.about-me__portfolio {
+    margin: 70px 0 0;
+    transition: margin-top .5s, margin-right .5s, margin-bottom .5s, margin-left .5s;
 }
 
 @media screen and (min-width: 768px) {
     .about-me {
         margin: 0;
-        padding: 90px 50px;
+        padding: 90px 50px 70px;
+    }
+
+    .about-me__summary {
+        margin: 66px 0 0;
+    }
+
+    .about-me__portfolio {
+        margin: 90px 0 0;
     }
 }
 
 @media screen and (min-width: 1024px) {
     .about-me {
         margin: 0;
-        padding: 110px 70px;
+        padding: 110px 70px 105px;
+    }
+
+    .about-me__portfolio {
+        margin: 100px 0 0;
     }
 }
