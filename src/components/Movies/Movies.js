@@ -6,6 +6,7 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import SearchForm from "../SearchForm/SearchForm";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import GetMoreMovies from "../GetMoreMovies/GetMoreMovies";
 
 function Movies() {
     return (
@@ -19,6 +20,7 @@ function Movies() {
                 <MoviesCard/>
                 <MoviesCard/>
             </MoviesCardList>
+            <GetMoreMovies onLoadMoreButtonClick={() => {}}/>
             <Footer/>
         </main>
     );
