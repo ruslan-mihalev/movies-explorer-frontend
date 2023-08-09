@@ -1,0 +1,27 @@
+.search-panel {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 80px 14px 10px;
+}
+
+.search-panel__divider {
+    height: 1px;
+    margin: 50px 0 0;
+    background: #E8E8E8;
+}
+
+@media screen and (min-width: 768px) {
+    .search-panel {
+        padding: 80px 30px 10px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .search-panel {
+        padding: 60px 70px 10px;
+    }
+
+    .search-panel__divider {
+        margin: 70px 0 0;
+    }
+}

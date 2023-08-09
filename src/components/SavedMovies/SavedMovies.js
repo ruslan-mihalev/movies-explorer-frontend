@@ -4,15 +4,15 @@ import './SavedMovies.css';
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Header from "../Header/Header";
-import SearchForm from "../SearchForm/SearchForm";
 import Footer from "../Footer/Footer";
 import MoviesDivider from "../MoviesDivider/MoviesDivider";
+import SearchPanel from "../SearchPanel/SearchPanel";
 
 function SavedMovies() {
     return (
         <main className="saved-movies">
             <Header/>
-            <SearchForm/>
+            <SearchPanel onSearchClicked={() => {}}/>
             <MoviesCardList>
                 <MoviesCard/>
                 <MoviesCard/>

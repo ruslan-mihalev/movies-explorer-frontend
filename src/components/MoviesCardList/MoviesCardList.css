@@ -1,3 +1,4 @@
 .movies-card-list {
+    flex: 1;
     background-color: #61dafb;
 }

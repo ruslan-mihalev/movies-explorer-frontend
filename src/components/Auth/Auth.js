@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 import SubmitButton from "../SubmitButton/SubmitButton";
 import AccountTitle from "../AccountTitle/AccountTitle";
 
-function Auth({title, submitButtonText, onSubmitClick, linkLabel, linkText, linkPath, children}) {
+function Auth({ formName, title, submitButtonText, onSubmitClick, linkLabel, linkText, linkPath, children }) {
 
-    const submitHandler = useCallback((e) => {
+    const submitFormHandler = useCallback((e) => {
         e.preventDefault();
         onSubmitClick();
     }, []);
@@ -20,11 +20,11 @@ function Auth({title, submitButtonText, onSubmitClick, linkLabel, linkText, link
                     <Logo/>
                     <AccountTitle>{title}</AccountTitle>
                 </div>
-                <form className='auth__form' onSubmit={submitHandler}>
+                <form className='auth__form' name={formName} onSubmit={submitFormHandler}>
                     <fieldset className='auth__fields-container'>
                         {children}
                     </fieldset>
-                    <SubmitButton text={submitButtonText} onClick={() => {}} style='accent'/>
+                    <SubmitButton text={submitButtonText} type='submit' style='accent'/>
                 </form>
                 <p className='auth__link-label'>{linkLabel}<Link className='auth__link-text'
                                                                  to={linkPath}>{linkText}</Link></p>

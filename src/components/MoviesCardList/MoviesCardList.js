@@ -2,8 +2,12 @@ import React from 'react';
 
 import './MoviesCardList.css';
 
-function MoviesCardList() {
-    return (<section className="movies-card-list"></section>);
+function MoviesCardList({children}) {
+    return (
+        <section className="movies-card-list">
+            {children}
+        </section>
+    );
 }
 
 export default MoviesCardList;

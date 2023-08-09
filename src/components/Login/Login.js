@@ -7,6 +7,7 @@ import InputField from '../InputField/InputField';
 function Login() {
     return (
         <Auth
+            formName='login-form'
             title='Рады видеть!'
             submitButtonText='Войти'
             onSubmitClick={() => {}}

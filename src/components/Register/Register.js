@@ -7,6 +7,7 @@ import InputField from '../InputField/InputField';
 function Register() {
     return (
         <Auth
+            formName='register-form'
             title='Добро пожаловать!'
             submitButtonText='Зарегистрироваться'
             onSubmitClick={() => {}}
