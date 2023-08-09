@@ -1,7 +1,6 @@
 .footer {
     margin: 0;
     padding: 80px 10px 20px;
-    background: #fff;
     transition: padding-top .5s, padding-right .5s, padding-bottom .5s, padding-left .5s;
 }
 

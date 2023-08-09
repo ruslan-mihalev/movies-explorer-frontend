@@ -1,7 +1,6 @@
 .about-me {
     margin: 0;
     padding: 70px 14px 50px;
-    background: #fff;
     transition: padding-top .5s, padding-right .5s, padding-bottom .5s, padding-left .5s;
 }
 

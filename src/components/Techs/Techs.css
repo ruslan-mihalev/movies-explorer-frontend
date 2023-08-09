@@ -2,7 +2,6 @@
     box-sizing: border-box;
     margin: 0;
     padding: 100px 18px;
-    background: #fff;
     transition: padding-top .5s, padding-right .5s, padding-bottom .5s, padding-left .5s;
 }
 

@@ -6,6 +6,7 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import Footer from "../Footer/Footer";
+import MoviesDivider from "../MoviesDivider/MoviesDivider";
 
 function SavedMovies() {
     return (
@@ -19,6 +20,7 @@ function SavedMovies() {
                 <MoviesCard/>
                 <MoviesCard/>
             </MoviesCardList>
+            <MoviesDivider/>
             <Footer/>
         </main>
     );
