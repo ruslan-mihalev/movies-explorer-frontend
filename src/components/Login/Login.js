@@ -15,8 +15,8 @@ function Login() {
             linkText='Регистрация'
             linkPath='/signup'
         >
-            <InputField labelText='E-mail' type='email' />
-            <InputField labelText='Пароль' type='password' />
+            <InputField labelText='E-mail' type='email' required={true} inputName='login-email'/>
+            <InputField labelText='Пароль' type='password' required={true} inputName='login-password' />
         </Auth>
     );
 }

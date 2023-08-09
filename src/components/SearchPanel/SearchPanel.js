@@ -4,7 +4,8 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import SearchField from '../SearchFieldset/SearchFieldset';
 
 function SearchPanel({ onSearchClicked }) {
-    const submitFormHandler = useCallback(() => {
+    const submitFormHandler = useCallback((e) => {
+        e.preventDefault();
         onSearchClicked();
     }, []);
 

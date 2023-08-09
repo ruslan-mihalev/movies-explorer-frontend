@@ -10,14 +10,16 @@ function Register() {
             formName='register-form'
             title='Добро пожаловать!'
             submitButtonText='Зарегистрироваться'
-            onSubmitClick={() => {}}
+            onSubmitClick={() => {
+            }}
             linkLabel='Уже зарегистрированы?'
             linkText='Войти'
             linkPath='/signin'
         >
-            <InputField labelText='Имя' type='text' />
-            <InputField labelText='E-mail' type='email' />
-            <InputField labelText='Пароль' type='password' errorText='Что-то пошло не так...' />
+            <InputField labelText='Имя' type='text' required={true} inputName='register-name'/>
+            <InputField labelText='E-mail' type='email' required={true} inputName='register-email'/>
+            <InputField labelText='Пароль' type='password' errorText='Что-то пошло не так...' required={true}
+                        inputName='register-password'/>
         </Auth>
     );
 }

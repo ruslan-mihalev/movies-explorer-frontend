@@ -30,8 +30,10 @@ function Profile({name}) {
                     {isModeEdit ? (
                         <form className='profile__form'>
                             <fieldset className='profile__fields-container'>
-                                <InputField labelText='Имя' type='text' value='Виталий' />
-                                <InputField labelText='E-mail' type='email' value='pochta@yandex.ru' />
+                                <InputField labelText='Имя' type='text' value='Виталий' required={true}
+                                            inputName='edit-name'/>
+                                <InputField labelText='E-mail' type='email' value='pochta@yandex.ru' required={true}
+                                            inputName='edit-email'/>
                             </fieldset>
 
                             <div className='profile__buttons'>
