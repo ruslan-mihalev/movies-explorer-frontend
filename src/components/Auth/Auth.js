@@ -4,7 +4,7 @@ import Logo from '../Logo/Logo';
 import './Auth.css';
 import { Link } from 'react-router-dom';
 import SubmitButton from "../SubmitButton/SubmitButton";
-import AccountTitle from "../AccountTitle/AccountTitle";
+import AccountTitle from '../AccountTitle/AccountTitle';
 
 function Auth({ formName, title, submitButtonText, onSubmitClick, linkLabel, linkText, linkPath, children }) {
 

@@ -1,4 +1,19 @@
 .movies-card-list {
-    flex: 1;
+    box-sizing: border-box;
+    flex: auto;
+    margin: 0;
+    padding: 40px 10px 30px;
     background-color: #61dafb;
+}
+
+@media screen and (min-width: 768px) {
+    .movies-card-list {
+        padding: 70px 30px 30px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .movies-card-list {
+        padding: 70px 70px 30px;
+    }
 }
