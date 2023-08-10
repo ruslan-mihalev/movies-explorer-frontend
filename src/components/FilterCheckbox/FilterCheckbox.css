@@ -8,6 +8,7 @@
     width: 1px;
     height: 1px;
     overflow: hidden;
+    opacity: 0;
     clip-path: inset(0, 0, 0, 0);
 }
 
@@ -40,6 +41,9 @@
     line-height: 1.64;
     color: #000;
     transition: font-size .5s;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 @media screen and (min-width: 768px) {

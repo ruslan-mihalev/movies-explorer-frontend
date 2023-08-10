@@ -10,7 +10,7 @@ function Footer() {
                 <p className='footer__title'>Учебный проект Яндекс.Практикум х BeatFilm.</p>
             </div>
             <div className='footer__content'>
-                <p className='footer__copyright'>©2020</p>
+                <p className='footer__copyright'>©2023</p>
                 <ul className='footer__menu'>
                     <li className='footer__menu-item'>
                         <Link className='footer__menu-link' to='https://practicum.yandex.ru/'

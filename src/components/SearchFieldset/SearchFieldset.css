@@ -58,6 +58,9 @@
     border: none;
     border-radius: 48px;
     background: url('../../images/ic_search.svg') no-repeat center / 22px 22px, #FF6838;
+    box-shadow: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {

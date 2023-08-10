@@ -1,4 +1,6 @@
 .main {
+    margin: 0 auto;
+    max-width: 1280px;
     min-height: 100vh;
     background: #fff;
 }
