@@ -20,6 +20,12 @@
     object-fit: cover;
     object-position: center;
     border-radius: 10px 10px 0 0;
+    cursor: pointer;
+}
+
+.movies-card__image:hover {
+    opacity: .7;
+    transition: opacity .2s;
 }
 
 .movies-card__name-container {
@@ -51,6 +57,11 @@
     background: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     cursor: pointer;
+}
+
+.movies-card__action:hover {
+    opacity: .8;
+    transition: opacity .2s;
 }
 
 .movies-card__action_type_default {

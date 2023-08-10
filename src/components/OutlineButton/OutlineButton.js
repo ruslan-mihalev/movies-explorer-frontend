@@ -1,4 +1,3 @@
-// style= primary | danger
 import React from 'react';
 import './OutlineButton.css';
 

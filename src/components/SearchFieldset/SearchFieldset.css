@@ -63,6 +63,11 @@
     cursor: pointer;
 }
 
+.search-fieldset__button:hover {
+    opacity: .8;
+    transition: opacity .2s;
+}
+
 @media screen and (min-width: 768px) {
     .search-fieldset__input {
         font-size: 13px;

@@ -21,7 +21,7 @@
 }
 
 .footer__content {
-    ox-sizing: border-box;
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     display: flex;
@@ -61,6 +61,12 @@
     font-size: 12px;
     text-decoration: none;
     color: #000;
+    cursor: pointer;
+}
+
+.footer__menu-link:hover {
+    opacity: .7;
+    transition: opacity .2s;
 }
 
 @media screen and (min-width: 768px) {

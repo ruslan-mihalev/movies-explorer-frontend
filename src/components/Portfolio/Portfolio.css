@@ -36,6 +36,12 @@
     color: #000;
     transition: font-size .5s;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.portfolio__item-link:hover {
+    opacity: .7;
+    transition: opacity .2s;
 }
 
 .portfolio__item-link_with-bottom-divider {

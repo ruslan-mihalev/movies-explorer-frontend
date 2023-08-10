@@ -20,7 +20,7 @@ function Summary({ className: mixinClass }) {
                         2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал
                         заниматься фриланс-заказами и ушёл с постоянной работы.</SimpleText>
                 </div>
-                <Link className='summary__github-link' to='https://github.com/ruslan-mihalev' target='_blank'>Github</Link>
+                <Link className='summary__social-link' to='https://github.com/ruslan-mihalev' target='_blank'>Github</Link>
             </div>
             <div className='summary__photo-container'>
                 <img className='summary__photo' src={myPhoto} alt='Личное фото'/>

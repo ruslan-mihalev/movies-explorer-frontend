@@ -75,6 +75,12 @@
     font-size: 18px;
     text-decoration: none;
     color: #000;
+    cursor: pointer;
+}
+
+.navigation__films:hover {
+    opacity: .7;
+    transition: opacity .2s;
 }
 
 .navigation__films_selected {
@@ -88,6 +94,12 @@
     line-height: 1.6;
     text-decoration: none;
     color: #fff;
+    cursor: pointer;
+}
+
+.navigation__sign-up:hover {
+    opacity: .7;
+    transition: opacity .2s;
 }
 
 .navigation__sign-in {
@@ -105,6 +117,12 @@
     color: #000;
     background: #2BE080;
     transition: min-width .5s, min-height .5s;
+    cursor: pointer;
+}
+
+.navigation__sign-in:hover {
+    opacity: .8;
+    transition: opacity .2s;
 }
 
 .navigation__account {
@@ -121,6 +139,12 @@
     text-decoration: none;
     color: #000;
     background: #f9f9f9;
+    cursor: pointer;
+}
+
+.navigation__account:hover {
+    opacity: .8;
+    transition: opacity .2s;
 }
 
 @media screen and (min-width: 768px) {

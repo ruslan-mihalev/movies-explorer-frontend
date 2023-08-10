@@ -32,6 +32,12 @@
     line-height: 1.45;
     text-decoration: underline;
     color: #000;
+    cursor: pointer;
+}
+
+.nav-tab__link:hover {
+    opacity: .7;
+    transition: opacity .2s;
 }
 
 @media screen and (min-width: 768px) {

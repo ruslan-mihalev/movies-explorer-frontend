@@ -12,9 +12,13 @@
     clip-path: inset(0, 0, 0, 0);
 }
 
+.filter-checkbox__pseudo-toggle {
+    cursor: pointer;
+}
+
 /* :hover */
 .filter-checkbox__pseudo-toggle:hover {
-    opacity: .7;
+    opacity: .8;
     transition: opacity .2s;
 }
 

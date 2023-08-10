@@ -5,6 +5,12 @@
     border: none;
     background: none;
     color: #000;
+    cursor: pointer;
+}
+
+.outline-button:hover {
+    opacity: .7;
+    transition: opacity .2s;
 }
 
 .outline-button_style_danger {
