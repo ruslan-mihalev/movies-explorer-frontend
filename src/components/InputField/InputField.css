@@ -18,7 +18,7 @@
 }
 
 .input-field:focus {
-    outline: none;
+    outline: #E8E8E8 solid 1px;
 }
 
 .input-field_errored {
