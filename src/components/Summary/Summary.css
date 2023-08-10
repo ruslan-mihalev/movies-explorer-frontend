@@ -72,11 +72,13 @@
     color: #000;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 680px) {
     .summary {
         flex-wrap: nowrap;
     }
+}
 
+@media screen and (min-width: 768px) {
     .summary__name {
         font-size: 40px;
         line-height: 1;
