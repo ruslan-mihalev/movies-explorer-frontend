@@ -1,0 +1,16 @@
+.loading-status {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding: 16px;
+}
+
+.loading-status__error-text {
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 24px;
+    color: #000;
+}
