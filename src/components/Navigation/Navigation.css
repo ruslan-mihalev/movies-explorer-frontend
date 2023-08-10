@@ -140,6 +140,7 @@
     color: #000;
     background: #f9f9f9;
     cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .navigation__account:hover {

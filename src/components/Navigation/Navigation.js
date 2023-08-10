@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
 
 import './Navigation.css';
-import {NavLink} from 'react-router-dom';
-import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
+import { NavLink } from 'react-router-dom';
+import { useMediaQuery } from '../../utils/hooks/useMediaQuery';
 
 function Navigation({isAuthorized = false}) {
     const isDesktop = useMediaQuery('(min-width: 1024px)');
@@ -14,6 +14,9 @@ function Navigation({isAuthorized = false}) {
 
     const mobileMenuClass = `navigation__mobile-style-container ${isMobileMenuOpened ? 'navigation__mobile-style-container_active' : ''}`;
 
+    /**
+     * Сделано так сложно по причине необходимости выравнивания меню Фильмы / Сохраненные фильмы по середине шапки.
+     */
     return !isAuthorized ? (
         // Not authorized
         <nav className='navigation__account-navigation-items-container'>
