@@ -7,5 +7,12 @@
     background: url('./../../images/ic_logo.svg') no-repeat center / cover;
     border: none;
     box-shadow: none;
+    text-decoration: none;
     transition: width .5s, height .5s;
+    cursor: pointer;
+}
+
+.logo:hover {
+    opacity: .8;
+    transition: opacity .2s;
 }
