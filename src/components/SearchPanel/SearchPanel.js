@@ -13,7 +13,7 @@ function SearchPanel({ onSearchClicked }) {
         <section className="search-panel">
             <form className='search-panel__form' name='search-form' onSubmit={submitFormHandler}>
                 <SearchField/>
-                <FilterCheckbox/>
+                <FilterCheckbox className='search-panel__filter-checkbox'/>
             </form>
             <div className='search-panel__divider'/>
         </section>
