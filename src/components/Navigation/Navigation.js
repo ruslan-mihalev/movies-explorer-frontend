@@ -1,10 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
 
 import './Navigation.css';
-import { NavLink } from 'react-router-dom';
-import { useMediaQuery } from '../../utils/hooks/useMediaQuery';
+import {NavLink} from 'react-router-dom';
+import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 
-function Navigation({isAuthorized = false}) {
+function Navigation({isAuthorized = true}) {
     const isDesktop = useMediaQuery('(min-width: 1024px)');
     const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
 
@@ -12,7 +12,7 @@ function Navigation({isAuthorized = false}) {
         setIsMobileMenuOpened((prev) => !prev);
     }, []);
 
-    const mobileMenuClass = `navigation__mobile-style-container ${isMobileMenuOpened ? 'navigation__mobile-style-container_active' : ''}`;
+    const mobileMenuClass = `navigation__mobile-menu-container ${isMobileMenuOpened ? 'navigation__mobile-menu-container_active' : ''}`;
 
     /**
      * Сделано так сложно по причине необходимости выравнивания меню Фильмы / Сохраненные фильмы по середине шапки.
@@ -27,8 +27,10 @@ function Navigation({isAuthorized = false}) {
         // Authorized & desktop style
         <>
             <nav className='navigation__movie-navigation-items-container'>
-                <NavLink to='/movies' className='navigation__films navigation__films_selected'>Фильмы</NavLink>
-                <NavLink to='/saved-movies' className='navigation__films'>Сохранённые фильмы</NavLink>
+                <NavLink className={({isActive}) => `navigation__films ${isActive ? 'navigation__films_active' : ''}`}
+                         to='/movies'>Фильмы</NavLink>
+                <NavLink className={({isActive}) => `navigation__films ${isActive ? 'navigation__films_active' : ''}`}
+                         to='/saved-movies'>Сохранённые фильмы</NavLink>
             </nav>
             <nav className='navigation__account-navigation-items-container'>
                 <NavLink to='/profile' className='navigation__account'>Аккаунт</NavLink>
@@ -39,19 +41,23 @@ function Navigation({isAuthorized = false}) {
         <div>
             <div className='navigation__mobile-open-menu-button' onClick={handleMobileMenuToggleButton}/>
             <div className={mobileMenuClass}>
-                <div className='navigation__mobile-close-menu-button' onClick={handleMobileMenuToggleButton}/>
-                <nav className='navigation__movie-navigation-items-container'>
-                    <NavLink to='/'
-                             className={({isActive}) => `navigation__films ${isActive ? 'navigation__films_selected' : ''}`}>Главная</NavLink>
-                    <NavLink to='/movies'
-                             className={({isActive}) => `navigation__films ${isActive ? 'navigation__films_selected' : ''}`}>Фильмы</NavLink>
-                    <NavLink to='/saved-movies'
-                             className={({isActive}) => `navigation__films ${isActive ? 'navigation__films_selected' : ''}`}>Сохранённые
-                        фильмы</NavLink>
-                </nav>
-                <nav className='navigation__account-navigation-items-container'>
-                    <NavLink to='/profile' className='navigation__account'>Аккаунт</NavLink>
-                </nav>
+                <div className='navigation__mobile-menu'>
+                    <div className='navigation__mobile-close-menu-button' onClick={handleMobileMenuToggleButton}/>
+                    <nav className='navigation__movie-navigation-items-container'>
+                        <NavLink
+                            className={({isActive}) => `navigation__films ${isActive ? 'navigation__films_active' : ''}`}
+                            to='/'>Главная</NavLink>
+                        <NavLink
+                            className={({isActive}) => `navigation__films ${isActive ? 'navigation__films_active' : ''}`}
+                            to='/movies'>Фильмы</NavLink>
+                        <NavLink
+                            className={({isActive}) => `navigation__films ${isActive ? 'navigation__films_active' : ''}`}
+                            to='/saved-movies'>Сохранённые фильмы</NavLink>
+                    </nav>
+                    <nav className='navigation__account-navigation-items-container'>
+                        <NavLink to='/profile' className='navigation__account'>Аккаунт</NavLink>
+                    </nav>
+                </div>
             </div>
         </div>
     );

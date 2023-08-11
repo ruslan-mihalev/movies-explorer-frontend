@@ -7,9 +7,13 @@
     min-height: 46px;
     margin: 0;
     padding: 0;
-    border: none;
+    border: transparent solid 1px;
     border-radius: 40px;
     background: #F9F9F9;
+}
+
+.search-fieldset:focus-within {
+    border: #E8E8E8 solid 1px;
 }
 
 .search-fieldset__input {
