@@ -52,8 +52,7 @@ function SavedMovies() {
     return (
         <main className='saved-movies'>
             <Header isAuthorized={true} />
-            <SearchPanel onSearchClicked={() => {
-            }}/>
+            <SearchPanel onSearchClicked={() => {}}/>
             {
                 isLoading
                     ? (<LoadingStatus/>)
