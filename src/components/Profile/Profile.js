@@ -1,14 +1,14 @@
 import React, {useCallback, useState} from 'react';
 
 import './Profile.css';
-import Header from "../Header/Header";
-import OutlineButton from "../OutlineButton/OutlineButton";
-import AccountTitle from "../AccountTitle/AccountTitle";
-import StaticField from "../StaticField/StaticField";
-import SubmitButton from "../SubmitButton/SubmitButton";
-import InputField from "../InputField/InputField";
+import Header from '../Header/Header';
+import OutlineButton from '../OutlineButton/OutlineButton';
+import AccountTitle from '../AccountTitle/AccountTitle';
+import StaticField from '../StaticField/StaticField';
+import SubmitButton from '../SubmitButton/SubmitButton';
+import InputField from '../InputField/InputField';
 
-function Profile({name}) {
+function Profile({ name }) {
 
     const [isModeEdit, setIsModeEdit] = useState(false);
     const [profileUpdateError, setProfileUpdateError] = useState('При обновлении профиля произошла ошибка.');
@@ -28,12 +28,14 @@ function Profile({name}) {
                 <section className='profile__content'>
                     <AccountTitle>Привет, {name}!</AccountTitle>
                     {isModeEdit ? (
-                        <form className='profile__form'>
+                        <form className='profile__form' name='edit-profile-form'>
                             <fieldset className='profile__fields-container'>
-                                <InputField labelText='Имя' type='text' value='Виталий' required={true}
-                                            inputName='edit-name'/>
-                                <InputField labelText='E-mail' type='email' value='pochta@yandex.ru' required={true}
-                                            inputName='edit-email'/>
+                                <InputField labelText='Имя' type='text' required={true}
+                                            inputName='name' inputId='edit-name'
+                                            value='Виталий' onChange={(text) => {}}/>
+                                <InputField labelText='E-mail' type='email' required={true}
+                                            inputName='email' inputId='edit-email'
+                                            value='pochta@yandex.ru' onChange={(text) => {}}/>
                             </fieldset>
 
                             <div className='profile__buttons'>
@@ -43,18 +45,17 @@ function Profile({name}) {
                             </div>
                         </form>
                     ) : (
-                        <form className='profile__form'>
-                            <fieldset className='profile__fields-container'>
+                        <div className='profile__form'>
+                            <div className='profile__fields-container'>
                                 <StaticField labelText='Имя' value='Виталий'/>
                                 <StaticField labelText='E-mail' value='pochta@yandex.ru'/>
-                            </fieldset>
+                            </div>
 
                             <div className='profile__buttons'>
                                 <OutlineButton text='Редактировать' onClick={handleEditProfileClick}/>
-                                <OutlineButton text='Выйти из аккаунта' onClick={() => {
-                                }} style='danger'/>
+                                <OutlineButton text='Выйти из аккаунта' onClick={() => {}} style='danger'/>
                             </div>
-                        </form>
+                        </div>
                     )}
                 </section>
             </div>

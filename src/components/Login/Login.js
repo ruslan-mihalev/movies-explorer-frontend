@@ -15,8 +15,12 @@ function Login() {
             linkText='Регистрация'
             linkPath='/signup'
         >
-            <InputField labelText='E-mail' type='email' required={true} inputName='login-email'/>
-            <InputField labelText='Пароль' type='password' required={true} inputName='login-password' />
+            <InputField labelText='E-mail' type='email' required={true}
+                        inputName='email' inputId='login-email'
+                        value='' onChange={(text) => {}}/>
+            <InputField labelText='Пароль' type='password' required={true}
+                        inputName='password' inputId='login-password'
+                        value='' onChange={(text) => {}}/>
         </Auth>
     );
 }
