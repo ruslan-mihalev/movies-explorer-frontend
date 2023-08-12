@@ -8,7 +8,7 @@ function NotFound() {
 
     const handleBackNavigation = useCallback(() => {
         navigate(-1);
-    }, []);
+    }, [navigate]);
 
     return (
         <section className='not-found'>

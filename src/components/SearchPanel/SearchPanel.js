@@ -13,10 +13,8 @@ function SearchPanel({ onSearchQuerySubmit }) {
     }, [searchQuery, onSearchQuerySubmit]);
 
     const searchQueryTextChangeHandler = useCallback((text) => {
-        setSearchQuery((prev) => {
-            return text;
-        });
-    }, [searchQuery]);
+        setSearchQuery(text);
+    }, []);
 
     return (
         <section className="search-panel">

@@ -11,7 +11,7 @@ import InputField from '../InputField/InputField';
 function Profile({ name }) {
 
     const [isModeEdit, setIsModeEdit] = useState(false);
-    const [profileUpdateError, setProfileUpdateError] = useState('При обновлении профиля произошла ошибка.');
+    const [profileUpdateError] = useState('При обновлении профиля произошла ошибка.');
 
     const handleSaveChangesClick = useCallback(() => {
         setIsModeEdit(false);
@@ -53,7 +53,7 @@ function Profile({ name }) {
 
                             <div className='profile__buttons'>
                                 <OutlineButton text='Редактировать' onClick={handleEditProfileClick}/>
-                                <OutlineButton text='Выйти из аккаунта' onClick={() => {}} style='danger'/>
+                                <OutlineButton text='Выйти из аккаунта' onClick={() => {}} buttonStyle='danger'/>
                             </div>
                         </div>
                     )}

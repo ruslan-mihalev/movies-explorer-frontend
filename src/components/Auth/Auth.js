@@ -11,7 +11,7 @@ function Auth({ formName, title, submitButtonText, onSubmitClick, linkLabel, lin
     const submitFormHandler = useCallback((e) => {
         e.preventDefault();
         onSubmitClick();
-    }, []);
+    }, [onSubmitClick]);
 
     return (
         <main className='auth'>
@@ -24,7 +24,7 @@ function Auth({ formName, title, submitButtonText, onSubmitClick, linkLabel, lin
                     <fieldset className='auth__fields-container'>
                         {children}
                     </fieldset>
-                    <SubmitButton text={submitButtonText} type='submit' style='accent'/>
+                    <SubmitButton text={submitButtonText} type='submit' buttonStyle='accent'/>
                 </form>
                 <p className='auth__link-label'>{linkLabel}<Link className='auth__link-text'
                                                                  to={linkPath}>{linkText}</Link></p>
