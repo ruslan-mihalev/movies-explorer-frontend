@@ -1,0 +1,56 @@
+.message-alert__background {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: max(320px, 100vw);
+    height: 100vh;
+    margin: 0;
+    padding: 16px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.message-alert__container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 0 auto;
+    padding: 8px 8px 8px 24px;
+    max-width: 400px;
+    min-height: 90px;
+    background: #fff;
+    border-radius: 6px;
+    border-left: 8px solid #ff355b;
+    box-shadow: 0 0 15px 5px #ccc;
+}
+
+.message-alert__content {
+    flex: 1;
+}
+
+.message-alert__title {
+    font-weight: 500;
+    font-size: 18px;
+    color: #000;
+}
+
+.message-alert__message {
+    font-weight: 400;
+    font-size: 16px;
+    color: #000;
+}
+
+.message-alert__close-button {
+    align-self: flex-start;
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-spacing: 0;
+    box-shadow: none;
+    background: no-repeat center/100% url('../../images/ic_delete.svg');
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}

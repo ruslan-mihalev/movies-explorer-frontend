@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
 
 import './Navigation.css';
-import {NavLink} from 'react-router-dom';
-import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
+import { NavLink } from 'react-router-dom';
+import { useMediaQuery } from '../../utils/hooks/useMediaQuery';
 
 function Navigation({isAuthorized = true}) {
     const isDesktop = useMediaQuery('(min-width: 1024px)');
@@ -10,6 +10,16 @@ function Navigation({isAuthorized = true}) {
 
     const handleMobileMenuToggleButton = useCallback(() => {
         setIsMobileMenuOpened((prev) => !prev);
+    }, []);
+
+    const mobileMenuBackgroundClickHandler = useCallback((e) => {
+        if (e.target === e.currentTarget) {
+            setIsMobileMenuOpened(false);
+        }
+    }, []);
+
+    const mobileMenuItemClickHandler = useCallback(() => {
+        setIsMobileMenuOpened(false);
     }, []);
 
     const mobileMenuClass = `navigation__mobile-menu-container ${isMobileMenuOpened ? 'navigation__mobile-menu-container_active' : ''}`;
@@ -40,22 +50,27 @@ function Navigation({isAuthorized = true}) {
         // Authorized & mobile style
         <div>
             <div className='navigation__mobile-open-menu-button' onClick={handleMobileMenuToggleButton}/>
-            <div className={mobileMenuClass}>
+            <div className={mobileMenuClass} onClick={mobileMenuBackgroundClickHandler}>
                 <div className='navigation__mobile-menu'>
                     <div className='navigation__mobile-close-menu-button' onClick={handleMobileMenuToggleButton}/>
                     <nav className='navigation__movie-navigation-items-container'>
                         <NavLink
                             className={({isActive}) => `navigation__films ${isActive ? 'navigation__films_active' : ''}`}
-                            to='/'>Главная</NavLink>
+                            to='/'
+                            onClick={mobileMenuItemClickHandler}>Главная</NavLink>
                         <NavLink
                             className={({isActive}) => `navigation__films ${isActive ? 'navigation__films_active' : ''}`}
-                            to='/movies'>Фильмы</NavLink>
+                            to='/movies'
+                            onClick={mobileMenuItemClickHandler}>Фильмы</NavLink>
                         <NavLink
                             className={({isActive}) => `navigation__films ${isActive ? 'navigation__films_active' : ''}`}
-                            to='/saved-movies'>Сохранённые фильмы</NavLink>
+                            to='/saved-movies'
+                            onClick={mobileMenuItemClickHandler}>Сохранённые фильмы</NavLink>
                     </nav>
                     <nav className='navigation__account-navigation-items-container'>
-                        <NavLink to='/profile' className='navigation__account'>Аккаунт</NavLink>
+                        <NavLink className='navigation__account'
+                                 to='/profile'
+                                 onClick={mobileMenuItemClickHandler}>Аккаунт</NavLink>
                     </nav>
                 </div>
             </div>
