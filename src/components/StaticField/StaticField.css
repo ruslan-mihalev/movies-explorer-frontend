@@ -1,4 +1,4 @@
-.static-field__container {
+.static-field {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -7,7 +7,7 @@
     padding: 16px 0;
 }
 
-.static-field__container + .static-field__container {
+.static-field + .static-field {
     border-top: #E8E8E8 solid 1px;
 }
 

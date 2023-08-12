@@ -18,6 +18,7 @@ function SearchPanel({ onSearchQuerySubmit }) {
 
     return (
         <section className="search-panel">
+            <h2 className='search-panel__header'>{/* HIDDEN */}Поиск по фильмам</h2>
             <form className='search-panel__form' name='search-form' onSubmit={submitFormHandler}>
                 <SearchField queryText={searchQuery} onQueryTextChanged={searchQueryTextChangeHandler}/>
                 <FilterCheckbox className='search-panel__filter-checkbox'/>

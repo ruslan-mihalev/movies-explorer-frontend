@@ -6,20 +6,21 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 function MoviesCardList({ moviesList }) {
     return (
         <section className='movies-card-list'>
-            <li className='movies-card-list__container'>
+            <h2 className='movies-card-list__header'>{/* HIDDEN */}Список найденных фильмов</h2>
+            <ol className='movies-card-list__container'>
                 {
                     moviesList.map((card) => (
-                        <ul className='movies-card-list__item' key={card.key}>
+                        <li className='movies-card-list__item' key={card.key}>
                             <MoviesCard
                                 name={card.name}
                                 duration={card.duration}
                                 imgUrl={card.imgUrl}
                                 actionType={card.actionType}
                             />
-                        </ul>
+                        </li>
                     ))
                 }
-            </li>
+            </ol>
         </section>
     );
 }

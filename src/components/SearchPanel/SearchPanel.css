@@ -1,8 +1,15 @@
 .search-panel {
     box-sizing: border-box;
     margin: 0;
-    padding: 80px 14px 10px;
+    padding: 40px 14px 10px;
     transition: padding-top .5s, padding-right .5s, padding-bottom .5s, padding-left .5s;
+}
+
+.search-panel__header {
+    visibility: hidden;
+    height: 20px;
+    margin: 0;
+    padding: 0;
 }
 
 .search-panel__form {
@@ -23,13 +30,13 @@
 
 @media screen and (min-width: 768px) {
     .search-panel {
-        padding: 80px 30px 10px;
+        padding: 40px 30px 10px;
     }
 }
 
 @media screen and (min-width: 1024px) {
     .search-panel {
-        padding: 60px 70px 10px;
+        padding: 20px 70px 10px;
     }
 
     .search-panel__filter-checkbox {

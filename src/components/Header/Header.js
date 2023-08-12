@@ -10,7 +10,7 @@ function Header({ isAuthorized }) {
             <div className='header__logo-container'>
                 <Logo />
             </div>
-            <Navigation isAuthorized={isAuthorized} />
+            <Navigation className='header__navigation-container' isAuthorized={isAuthorized} />
         </header>
     );
 }

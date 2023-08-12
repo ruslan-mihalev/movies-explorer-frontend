@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import './SavedMovies.css';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
@@ -6,7 +6,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import MoviesDivider from '../MoviesDivider/MoviesDivider';
 import SearchPanel from '../SearchPanel/SearchPanel';
-import LoadingStatus from "../LoadingStatus/LoadingStatus";
+import LoadingStatus from '../LoadingStatus/LoadingStatus';
 
 function SavedMovies() {
 
@@ -52,6 +52,7 @@ function SavedMovies() {
     return (
         <main className='saved-movies'>
             <Header isAuthorized={true} />
+            <h1 className='saved-movies__header'>{/* HIDDEN */}Сохраненные фильмы</h1>
             <SearchPanel onSearchClicked={() => {}}/>
             {
                 isLoading

@@ -4,7 +4,8 @@ import './Navigation.css';
 import { NavLink } from 'react-router-dom';
 import { useMediaQuery } from '../../utils/hooks/useMediaQuery';
 
-function Navigation({ isAuthorized }) {
+function Navigation({ className: mixinClass, isAuthorized }) {
+    const className = `navigation ${mixinClass}`;
     const isDesktop = useMediaQuery('(min-width: 1024px)');
     const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
 
@@ -29,13 +30,15 @@ function Navigation({ isAuthorized }) {
      */
     return !isAuthorized ? (
         // Not authorized
-        <nav className='navigation__account-navigation-items-container'>
-            <NavLink to='/signup' className='navigation__sign-up'>Регистрация</NavLink>
-            <NavLink to='/signin' className='navigation__sign-in'>Войти</NavLink>
-        </nav>
+        <div className={className}>
+            <nav className='navigation__account-navigation-items-container'>
+                <NavLink to='/signup' className='navigation__sign-up'>Регистрация</NavLink>
+                <NavLink to='/signin' className='navigation__sign-in'>Войти</NavLink>
+            </nav>
+        </div>
     ) : isDesktop ? (
         // Authorized & desktop style
-        <>
+        <div className={className}>
             <nav className='navigation__movie-navigation-items-container'>
                 <NavLink className={({isActive}) => `navigation__films ${isActive ? 'navigation__films_active' : ''}`}
                          to='/movies'>Фильмы</NavLink>
@@ -45,10 +48,10 @@ function Navigation({ isAuthorized }) {
             <nav className='navigation__account-navigation-items-container'>
                 <NavLink to='/profile' className='navigation__account'>Аккаунт</NavLink>
             </nav>
-        </>
+        </div>
     ) : (
         // Authorized & mobile style
-        <div>
+        <div className={className}>
             <div className='navigation__mobile-open-menu-button' onClick={handleMobileMenuToggleButton}/>
             <div className={mobileMenuClass} onClick={mobileMenuBackgroundClickHandler}>
                 <div className='navigation__mobile-menu'>

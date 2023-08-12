@@ -24,7 +24,7 @@ function MessageAlert({ title, message, onCloseClick }) {
     }, [onCloseClick]);
 
     return (
-        <div className='message-alert__background' onClick={backgroundClickHandler}>
+        <div className='message-alert' onClick={backgroundClickHandler}>
             <div className='message-alert__container'>
                 <div className='message-alert__content'>
                     <p className='message-alert__title'>

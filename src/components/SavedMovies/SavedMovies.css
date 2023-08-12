@@ -5,3 +5,10 @@
     max-width: 1280px;
     min-height: 100vh;
 }
+
+.saved-movies__header {
+    visibility: hidden;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+}

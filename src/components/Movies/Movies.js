@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import './Movies.css';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
@@ -6,8 +6,8 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import GetMoreMovies from '../GetMoreMovies/GetMoreMovies';
 import SearchPanel from '../SearchPanel/SearchPanel';
-import LoadingStatus from "../LoadingStatus/LoadingStatus";
-import MessageAlert from "../MessageAlert/MessageAlert";
+import LoadingStatus from '../LoadingStatus/LoadingStatus';
+import MessageAlert from '../MessageAlert/MessageAlert';
 
 function Movies() {
 
@@ -51,6 +51,7 @@ function Movies() {
     return (
         <main className='movies'>
             <Header isAuthorized={true} />
+            <h1 className='movies__header'>{/* HIDDEN */}Фильмы</h1>
             <SearchPanel onSearchQuerySubmit={() => {}}/>
             {isLoading
                 ? (<LoadingStatus/>)

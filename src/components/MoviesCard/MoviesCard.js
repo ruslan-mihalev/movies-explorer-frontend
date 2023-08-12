@@ -13,7 +13,7 @@ function MoviesCard({ name, duration, imgUrl, actionType }) {
                 <img className='movies-card__image' alt={name} src={imgUrl}/>
             </div>
             <div className='movies-card__name-container'>
-                <p className='movies-card__name'>{name}</p>
+                <h3 className='movies-card__name'>{name}</h3>
                 <button className={actionClass}/>
                 <p className='movies-card__duration'>{duration}</p>
             </div>

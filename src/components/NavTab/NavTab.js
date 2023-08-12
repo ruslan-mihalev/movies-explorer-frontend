@@ -5,7 +5,7 @@ import { HashLink } from 'react-router-hash-link';
 
 function NavTab() {
     return (
-        <section className='nav-tab'>
+        <nav className='nav-tab'>
             <ul className='nav-tab__container'>
                 <li className='nav-tab__link-wrapper'>
                     <HashLink to='#about-project' className='nav-tab__link'>О проекте</HashLink>
@@ -17,7 +17,7 @@ function NavTab() {
                     <HashLink to='#about-me' className='nav-tab__link'>Студент</HashLink>
                 </li>
             </ul>
-        </section>
+        </nav>
     );
 }
 

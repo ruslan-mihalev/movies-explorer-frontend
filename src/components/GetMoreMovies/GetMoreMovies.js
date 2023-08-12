@@ -4,9 +4,9 @@ import LoadMoreButton from "../LoadMoreButton/LoadMoreButton";
 
 function GetMoreMovies({onLoadMoreButtonClick}) {
     return (
-        <section className='get-more-movies'>
+        <div className='get-more-movies'>
             <LoadMoreButton onClick={onLoadMoreButtonClick}/>
-        </section>
+        </div>
     );
 }
 
