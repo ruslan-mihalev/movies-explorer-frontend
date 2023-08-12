@@ -1,16 +1,16 @@
 import React from 'react';
 
 import './Header.css';
-import Navigation from "../Navigation/Navigation";
-import Logo from "../Logo/Logo";
+import Navigation from '../Navigation/Navigation';
+import Logo from '../Logo/Logo';
 
-function Header() {
+function Header({ isAuthorized }) {
     return (
         <header className='header'>
             <div className='header__logo-container'>
                 <Logo />
             </div>
-            <Navigation />
+            <Navigation isAuthorized={isAuthorized} />
         </header>
     );
 }

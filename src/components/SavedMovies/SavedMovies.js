@@ -46,7 +46,7 @@ function SavedMovies() {
 
     return (
         <main className='saved-movies'>
-            <Header/>
+            <Header isAuthorized={true} />
             <SearchPanel onSearchClicked={() => {
             }}/>
             {

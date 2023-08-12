@@ -45,7 +45,7 @@ function Movies() {
 
     return (
         <main className='movies'>
-            <Header/>
+            <Header isAuthorized={true} />
             <SearchPanel onSearchClicked={() => {
             }}/>
             {isLoading
