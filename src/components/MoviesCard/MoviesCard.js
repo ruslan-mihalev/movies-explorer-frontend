@@ -9,7 +9,9 @@ function MoviesCard({ name, duration, imgUrl, actionType }) {
 
     return (
         <article className='movies-card'>
-            <img className='movies-card__image' alt={name} src={imgUrl}/>
+            <div className='movies-card__image-container'>
+                <img className='movies-card__image' alt={name} src={imgUrl}/>
+            </div>
             <div className='movies-card__name-container'>
                 <p className='movies-card__name'>{name}</p>
                 <button className={actionClass}/>
