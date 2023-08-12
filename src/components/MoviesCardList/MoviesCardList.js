@@ -9,7 +9,7 @@ function MoviesCardList({ moviesList }) {
             <li className='movies-card-list__container'>
                 {
                     moviesList.map((card) => (
-                        <ul className='movies-card-list__item' key={card.name}>
+                        <ul className='movies-card-list__item' key={card.key}>
                             <MoviesCard
                                 name={card.name}
                                 duration={card.duration}
