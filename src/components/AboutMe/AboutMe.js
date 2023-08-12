@@ -3,12 +3,12 @@ import React from 'react';
 import './AboutMe.css';
 import Portfolio from '../Portfolio/Portfolio';
 import Summary from '../Summary/Summary';
-import SectionTitle from "../SectionTitle/SectionTitle";
+import SectionTitle from '../SectionTitle/SectionTitle';
 
 function AboutMe() {
     return (
-        <section className="about-me" id='about-me'>
-            <SectionTitle>
+        <section className='about-me' id='about-me'>
+            <SectionTitle className='about-me__title'>
                 Студент
             </SectionTitle>
             <Summary className='about-me__summary'/>

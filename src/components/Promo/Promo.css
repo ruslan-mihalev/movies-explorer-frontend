@@ -10,7 +10,7 @@
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - 140px);
-    padding: 10px;
+    padding: 10px 10px 48px;
     background: url('../../images/ic_promo.svg') no-repeat center;
     background-origin: content-box;
     transition: min-height .5s, padding-top .5s, padding-right .5s, padding-bottom .5s, padding-left .5s;
@@ -26,23 +26,30 @@
     font-size: 31px;
     font-weight: 400;
     line-height: 1.26;
-    letter-spacing: -1px;
+    letter-spacing: -1.24px;
     transition: font-size .5s;
 }
 
 @media screen and (min-width: 768px) {
     .promo__hero {
-        padding: 20px;
+        padding: 20px 20px 36px;
     }
     .promo__text {
         font-size: 50px;
         line-height: 1.16;
         letter-spacing: -2px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -moz-text-size-adjust: 100%;
+        text-rendering: optimizeLegibility;
     }
 }
 
 @media screen and (min-width: 1024px) {
     .promo__hero {
         min-height: 524px;
+        padding: 20px 20px 60px;
     }
 }

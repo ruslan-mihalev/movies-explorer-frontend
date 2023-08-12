@@ -1,13 +1,13 @@
 import React from 'react';
 
 import './Techs.css';
-import SectionTitle from "../SectionTitle/SectionTitle";
-import SimpleText from "../SimpleText/SimpleText";
+import SectionTitle from '../SectionTitle/SectionTitle';
+import SimpleText from '../SimpleText/SimpleText';
 
 function Techs() {
     return (
         <section className='techs' id='techs'>
-            <SectionTitle>
+            <SectionTitle className='techs__title'>
                 Технологии
             </SectionTitle>
             <h3 className='techs__subtitle'>7 технологий</h3>

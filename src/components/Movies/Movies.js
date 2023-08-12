@@ -46,7 +46,7 @@ function Movies() {
             imgUrl: 'https://batenka.ru/media/images/fight-club--povy.width-1280.pngquality-80.jpegquality-80.jpg',
         },
     ];
-    const [errorMessage, setErrorMessage] = useState('На сервере произошла ошибка.');
+    const [errorMessage, setErrorMessage] = useState('');
 
     return (
         <main className='movies'>
