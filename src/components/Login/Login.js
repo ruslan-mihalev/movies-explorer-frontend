@@ -1,6 +1,5 @@
 import React from 'react';
 
-import './Login.css';
 import Auth from '../Auth/Auth';
 import InputField from '../InputField/InputField';
 

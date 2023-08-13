@@ -1,6 +1,5 @@
 import React from 'react';
 
-import './Register.css';
 import Auth from '../Auth/Auth';
 import InputField from '../InputField/InputField';
 

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, {useCallback} from 'react';
 import Logo from '../Logo/Logo';
 
 import './Auth.css';
@@ -15,20 +15,20 @@ function Auth({ formName, title, submitButtonText, onSubmitClick, linkLabel, lin
 
     return (
         <main className='auth'>
-            <section className='auth__container'>
-                <div className='auth__header'>
+            <form className='auth__form' name={formName} onSubmit={submitFormHandler}>
+                <div className='auth__title-container'>
                     <Logo/>
                     <AccountTitle>{title}</AccountTitle>
                 </div>
-                <form className='auth__form' name={formName} onSubmit={submitFormHandler}>
-                    <fieldset className='auth__fields-container'>
-                        {children}
-                    </fieldset>
+                <fieldset className='auth__fields-container'>
+                    {children}
+                </fieldset>
+                <fieldset className='auth__buttons-container'>
                     <SubmitButton className='auth__submit-button' text={submitButtonText} type='submit'/>
-                </form>
-                <p className='auth__link-label'>{linkLabel}<Link className='auth__link-text'
-                                                                 to={linkPath}>{linkText}</Link></p>
-            </section>
+                    <p className='auth__link-label'>{linkLabel}<Link className='auth__link-text'
+                                                                     to={linkPath}>{linkText}</Link></p>
+                </fieldset>
+            </form>
         </main>
     );
 }

@@ -1,42 +1,40 @@
 .auth {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     margin: 0;
-}
-
-.auth__container {
-    display: flex;
-    box-sizing: border-box;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    width: 100%;
+    padding: 0 30px;
     min-width: 320px;
-    max-width: 456px;
     min-height: 100vh;
-    padding: 55px 30px 30px;
-}
-
-.auth__header {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0;
 }
 
 .auth__form {
-    flex: 1;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    max-width: 396px;
+    min-height: 100vh;
+}
+
+.auth__title-container {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: center;
+    gap: 50px;
+    padding: 56px 0 16px;
 }
 
 .auth__fields-container {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -44,7 +42,21 @@
     margin: 0;
     padding: 0;
     width: 100%;
+    min-height: 266px;
     border: none;
+}
+
+.auth__buttons-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    border: none;
+    gap: 14px;
+    margin: 0;
+    padding: 96px 0 30px;
+    min-width: 0;
 }
 
 .auth__submit-button {
@@ -53,7 +65,7 @@
 
 .auth__link-label {
     display: block;
-    margin: 14px 0 0 0;
+    margin: 0;
     padding: 0;
     text-align: center;
     font-weight: 400;
@@ -74,22 +86,27 @@
 }
 
 @media screen and (min-width: 768px) {
-    .auth__container {
-        min-height: 540px;
+    .auth__form {
+        min-height: 586px;
         padding: 0;
     }
 
-    .auth__header {
-        justify-content: flex-end;
+    .auth__title-container {
+        justify-content: flex-start;
         align-items: flex-start;
+        gap: 40px;
+        padding: 13px 0 4px;
     }
 
-    .auth__footer {
-        justify-content: flex-start;
+    .auth__fields-container {
+    }
+
+    .auth__buttons-container {
+        padding: 32px 0 13px;
+        gap: 16px;
     }
 
     .auth__link-label {
-        margin: 16px 0 0 0;
         font-size: 14px;
     }
 }
