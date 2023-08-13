@@ -14,11 +14,13 @@ function NotFound() {
         <section className='not-found'>
             <div className='not-found__container'>
                 <div/>
-                <div>
-                    <h1 className='not-found__title'>404</h1>
-                    <p className='not-found__subtitle'>Страница не найдена</p>
+                    <div className='not-fount__main-container'>
+                        <h1 className='not-found__title'>404</h1>
+                        <p className='not-found__subtitle'>Страница не найдена</p>
+                    </div>
+                <div className='not-found__back-button-container'>
+                    <button className='not-found__back-button' onClick={handleBackNavigation}>Назад</button>
                 </div>
-                <button className='not-found__back-button' onClick={handleBackNavigation}>Назад</button>
             </div>
         </section>
     );
