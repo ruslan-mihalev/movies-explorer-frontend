@@ -4,12 +4,11 @@
 }
 
 .navigation__movie-navigation-items-container {
-    flex: 1;
     display: flex;
-    flex-direction: column;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    gap: 16px;
+    gap: 10px;
 }
 
 .navigation__account-navigation-items-container {
@@ -34,41 +33,46 @@
 }
 
 .navigation__mobile-close-menu-button {
-    align-self: flex-end;
-    justify-self: flex-start;
-    width: 24px;
-    height: 24px;
-    margin: 14px 14px 0 0;
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    margin: 0;
     padding: 0;
     border: none;
     box-shadow: none;
-    background: url('../../images/ic_close.svg') no-repeat center / cover;
+    background: url('../../images/ic_close.svg') no-repeat center / 100%;
     transition: margin-top .5s, margin-right .5s;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     cursor: pointer;
 }
 
-.navigation__mobile-menu-container {
+.navigation__mobile-menu-background-container {
+    box-sizing: border-box;
     position: fixed;
     top: 0;
     right: 0;
     display: none;
     width: max(320px, 100vw);
     height: 100vh;
+    margin: 0;
+    padding: 0;
     background-color: rgba(0, 0, 0, 0.3);
 }
 
-.navigation__mobile-menu-container_active {
+.navigation__mobile-menu-background-container_active {
     display: block;
 }
 
 .navigation__mobile-menu {
+    box-sizing: border-box;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-flow: column nowrap;
+    justify-content: space-between;
     align-items: center;
     gap: 16px;
-    padding: 0;
+    padding: 138px 0 45px 0;
     margin: 0 0 0 auto;
     max-width: 320px;
     min-height: 100vh;
@@ -77,6 +81,8 @@
 }
 
 .navigation__films {
+    margin: 0;
+    padding: 7px 0;
     font-weight: 500;
     font-size: 18px;
     text-decoration: none;
@@ -91,7 +97,7 @@
 
 .navigation__films_active {
     text-decoration: none;
-    border-bottom: 1px solid #000;
+    border-bottom: 2px solid #000;
 }
 
 .navigation__sign-up {
@@ -159,12 +165,25 @@
         gap: 30px;
     }
 
+    .navigation__movie-navigation-items-container {
+        gap: 20px;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        padding: 0;
+    }
+
     .navigation__mobile-close-menu-button {
-        margin: 24px 24px 0 0;
+        top: 22px;
+        right: 22px;
     }
 
     .navigation__mobile-menu {
-        min-width: 540px;
+        min-width: 520px;
+        padding: 155px 0 90px 0;
+    }
+
+    .navigation__films {
+        padding: 4px 0;
     }
 
     .navigation__sign-up {
@@ -196,8 +215,8 @@
 
     .navigation__films {
         font-weight: 400;
-        font-size: 14px;
-        line-height: 1.28;
+        font-size: 13px;
+        line-height: 1.38;
     }
 
     .navigation__films_active {

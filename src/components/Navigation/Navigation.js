@@ -1,10 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React, {useCallback, useState} from 'react';
 
 import './Navigation.css';
-import { NavLink } from 'react-router-dom';
-import { useMediaQuery } from '../../utils/hooks/useMediaQuery';
+import {NavLink} from 'react-router-dom';
+import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 
-function Navigation({ className: mixinClass, isAuthorized }) {
+function Navigation({className: mixinClass, isAuthorized}) {
     const className = `navigation ${mixinClass}`;
     const isDesktop = useMediaQuery('(min-width: 1024px)');
     const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
@@ -23,7 +23,9 @@ function Navigation({ className: mixinClass, isAuthorized }) {
         setIsMobileMenuOpened(false);
     }, []);
 
-    const mobileMenuClass = `navigation__mobile-menu-container ${isMobileMenuOpened ? 'navigation__mobile-menu-container_active' : ''}`;
+    const mobileMenuClass = `navigation__mobile-menu-background-container ${
+        isMobileMenuOpened ? 'navigation__mobile-menu-background-container_active' : ''
+    }`;
 
     /**
      * Сделано так сложно по причине необходимости выравнивания меню Фильмы / Сохраненные фильмы по середине шапки.
@@ -55,7 +57,6 @@ function Navigation({ className: mixinClass, isAuthorized }) {
             <div className='navigation__mobile-open-menu-button' onClick={handleMobileMenuToggleButton}/>
             <div className={mobileMenuClass} onClick={mobileMenuBackgroundClickHandler}>
                 <div className='navigation__mobile-menu'>
-                    <div className='navigation__mobile-close-menu-button' onClick={handleMobileMenuToggleButton}/>
                     <nav className='navigation__movie-navigation-items-container'>
                         <NavLink
                             className={({isActive}) => `navigation__films ${isActive ? 'navigation__films_active' : ''}`}
@@ -70,11 +71,12 @@ function Navigation({ className: mixinClass, isAuthorized }) {
                             to='/saved-movies'
                             onClick={mobileMenuItemClickHandler}>Сохранённые фильмы</NavLink>
                     </nav>
-                    <nav className='navigation__account-navigation-items-container'>
+                    <nav className='navigation__mobile-account-navigation-items-container'>
                         <NavLink className='navigation__account'
                                  to='/profile'
                                  onClick={mobileMenuItemClickHandler}>Аккаунт</NavLink>
                     </nav>
+                    <button className='navigation__mobile-close-menu-button' onClick={handleMobileMenuToggleButton}/>
                 </div>
             </div>
         </div>
