@@ -54,7 +54,7 @@ function Navigation({className: mixinClass, isAuthorized}) {
     ) : (
         // Authorized & mobile style
         <div className={className}>
-            <div className='navigation__mobile-open-menu-button' onClick={handleMobileMenuToggleButton}/>
+            <div className='navigation__mobile-menu-open-button' onClick={handleMobileMenuToggleButton}/>
             <div className={mobileMenuClass} onClick={mobileMenuBackgroundClickHandler}>
                 <div className='navigation__mobile-menu'>
                     <nav className='navigation__movie-navigation-items-container'>
