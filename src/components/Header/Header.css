@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 74px;
+    padding: 0 14px;
+    transition: padding-left .5s, padding-right .5s;
+    gap: 8px
+}
+
+@media screen  and (min-width: 768px) {
+    .header {
+        padding: 0 30px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .header {
+        padding: 0 70px;
+    }
+
+    .header__logo-container {
+        flex: 33%;
+    }
+
+    .header__navigation-container {
+        flex: 66%;
+    }
+}

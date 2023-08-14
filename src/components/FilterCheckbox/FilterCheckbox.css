@@ -1,0 +1,65 @@
+.filter-checkbox {
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+}
+
+.filter-checkbox__container {
+    box-sizing: border-box;
+}
+
+.filter-checkbox__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    clip-path: inset(0, 0, 0, 0);
+}
+
+.filter-checkbox__pseudo-toggle {
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* :hover */
+.filter-checkbox__pseudo-toggle:hover {
+    opacity: .8;
+    transition: opacity .2s;
+}
+
+/* <base> */
+.filter-checkbox__input + .filter-checkbox__pseudo-toggle {
+    display: inline-block;
+    vertical-align: middle;
+    width: 36px;
+    height: 20px;
+    background: url('../../images/ic_toggle-disabled.svg');
+}
+
+/*:checked */
+.filter-checkbox__input:checked + .filter-checkbox__pseudo-toggle {
+    background: url('../../images/ic_toggle-enabled.svg');
+}
+
+.filter-checkbox__label {
+    margin: 0 0 0 13px;
+    padding: 0;
+    vertical-align: middle;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 1.64;
+    color: #000;
+    transition: font-size .5s;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+@media screen and (min-width: 768px) {
+    .filter-checkbox__label {
+        margin: 0 0 0 12px;
+        font-size: 14px;
+        line-height: 1.29;
+    }
+}
