@@ -1,7 +1,7 @@
 .auth {
     box-sizing: border-box;
     display: flex;
-    flex-direction: column;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
     margin: 0;
@@ -96,9 +96,6 @@
         align-items: flex-start;
         gap: 40px;
         padding: 13px 0 4px;
-    }
-
-    .auth__fields-container {
     }
 
     .auth__buttons-container {

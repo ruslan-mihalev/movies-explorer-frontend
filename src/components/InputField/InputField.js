@@ -20,7 +20,7 @@ function InputField({
     const spanClassName = `input-field-error ${inputId}-error`;
     return (
         <>
-            <label className='input-field-label'>{labelText}</label>
+            <label className='input-field-label' htmlFor={inputId}>{labelText}</label>
             <input
                 className={inputClassName}
                 name={inputName}

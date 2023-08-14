@@ -1,42 +1,42 @@
 .profile {
+    display: flex;
+    flex-flow: column nowrap;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.profile__container {
-    align-self: center;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    padding: 0 30px;
-    min-width: 320px;
-    max-width: 470px;
-    width: 100%;
 }
 
 .profile__content {
-    flex: 1;
+    flex: 100%;
+    box-sizing: border-box;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: stretch;
+    margin: 0;
+    padding: 0 30px;
+    min-width: 320px;
 }
 
 .profile__form {
-    flex: 1;
+    flex: 100%;
+    box-sizing: border-box;
     display: flex;
-    flex-direction: column;
+    flex-flow: column nowrap;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0;
     width: 100%;
+    max-width: 410px;
+}
+
+.profile__title-container {
+    box-sizing: border-box;
+    padding: 70px 0 64px;
 }
 
 .profile__fields-container {
+    flex: 1;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -47,10 +47,15 @@
     border: none;
 }
 
-.profile__buttons {
+.profile__buttons-container {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     gap: 16px;
+    margin: 0;
+    padding: 40px 0 40px;
+    border: none;
 }
 
 .profile__update-error {
@@ -66,8 +71,26 @@
 }
 
 @media screen and (min-width: 768px) {
-    .profile__content {
-        flex: none;
-        min-height: 450px;
+    .profile__form {
+        flex: initial;
+        min-height: 586px;
+    }
+
+    .profile__title-container {
+        padding: 54px 0 80px;
+    }
+
+    .profile__buttons-container {
+        padding: 0 0 88px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .profile__title-container {
+        padding: 54px 0 107px;
+    }
+
+    .profile__buttons-container {
+        padding: 0 0 51px;
     }
 }
