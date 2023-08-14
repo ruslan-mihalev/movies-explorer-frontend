@@ -13,17 +13,18 @@
 }
 
 .search-panel__form {
+    box-sizing: border-box;
     display: block;
 }
 
 .search-panel__filter-checkbox {
-    margin: 42px auto 0;
+    margin: 41px auto 0;
     transition: margin-top .5s;
 }
 
 .search-panel__divider {
     height: 1px;
-    margin: 50px 0 0;
+    margin: 49px 0 0;
     background: #E8E8E8;
     transition: margin-top .5s;
 }
@@ -32,6 +33,14 @@
     .search-panel {
         padding: 40px 30px 10px;
     }
+
+    .search-panel__filter-checkbox {
+        margin: 40px auto 0;
+    }
+
+    .search-panel__divider {
+        margin: 50px 0 0;
+    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -39,11 +48,7 @@
         padding: 20px 70px 10px;
     }
 
-    .search-panel__filter-checkbox {
-        margin: 41px auto 0;
-    }
-
     .search-panel__divider {
-        margin: 70px 0 0;
+        margin: 69px 0 0;
     }
 }

@@ -4,7 +4,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    min-height: 46px;
+    height: 46px;
     margin: 0;
     padding: 0;
     border: transparent solid 1px;
@@ -18,7 +18,8 @@
 
 .search-fieldset__input {
     display: block;
-    margin: 14px;
+    margin: 14px 0 14px 18px;
+    padding: 0;
     flex: auto;
     font-weight: 400;
     font-size: 11px;
@@ -54,8 +55,9 @@
 }
 
 .search-fieldset__button {
+    box-sizing: border-box;
     display: block;
-    margin: 6px;
+    margin: 6px 5px 6px 6px;
     padding: 0;
     width: 80px;
     height: 34px;
@@ -74,6 +76,7 @@
 
 @media screen and (min-width: 768px) {
     .search-fieldset__input {
+        margin: 14px 0 14px 21px;
         font-size: 13px;
         line-height: 1.3;
     }

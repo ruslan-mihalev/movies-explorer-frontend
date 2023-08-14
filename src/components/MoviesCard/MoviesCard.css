@@ -41,13 +41,22 @@
 .movies-card__name-container {
     flex-shrink: 0;
     box-sizing: border-box;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
     margin: 0;
-    padding: 14px 12px;
+    padding: 0;
     height: 67px;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(min-content, max-content));
-    grid-template-rows: repeat(2, minmax(min-content, max-content));
+}
+
+.movies-card__name-action-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row nowrap;
     justify-content: space-between;
+    align-items: center;
+    padding: 7px 4px 0 12px;
 }
 
 .movies-card__name {
@@ -59,6 +68,7 @@
 }
 
 .movies-card__action {
+    box-sizing: border-box;
     display: block;
     margin: 0;
     padding: 0;
@@ -77,27 +87,31 @@
 }
 
 .movies-card__action_type_default {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     background: no-repeat center/100% url('../../images/ic_unsaved.svg');
 }
 
 .movies-card__action_type_saved {
-    width: 28px;
-    height: 28px;
-    background: no-repeat center/100% url('../../images/ic_saved.svg');
+    box-sizing: border-box;
+    width: 32px;
+    height: 32px;
+    background-image: url('../../images/ic_saved.svg');
+    background-repeat: no-repeat;
+    background-position: 35% 90%;
 }
 
 .movies-card__action_type_remove {
-    width: 16px;
-    height: 16px;
-    margin: 0 0 10px 0;
-    background: no-repeat center/100% url('../../images/ic_delete.svg');
+    width: 32px;
+    height: 32px;
+    background-image: url('../../images/ic_delete.svg');
+    background-repeat: no-repeat;
+    background-position: 50% 42%;
 }
 
 .movies-card__duration {
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 12px;
     font-weight: 400;
     font-size: 11px;
     color: #A0A0A0;

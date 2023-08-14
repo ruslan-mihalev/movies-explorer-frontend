@@ -13,8 +13,10 @@ function MoviesCard({ name, duration, imgUrl, actionType, onCardClick, onActionC
                 <img className='movies-card__image' alt={name} src={imgUrl}/>
             </div>
             <div className='movies-card__name-container'>
-                <h3 className='movies-card__name'>{name}</h3>
-                <button className={actionClass} onClick={onActionClick}/>
+                <div className='movies-card__name-action-container'>
+                    <h3 className='movies-card__name'>{name}</h3>
+                    <button className={actionClass} onClick={onActionClick}/>
+                </div>
                 <p className='movies-card__duration'>{duration}</p>
             </div>
         </article>

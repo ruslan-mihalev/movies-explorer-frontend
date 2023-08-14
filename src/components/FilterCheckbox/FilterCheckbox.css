@@ -1,6 +1,11 @@
 .filter-checkbox {
+    box-sizing: border-box;
     display: block;
     text-align: center;
+}
+
+.filter-checkbox__container {
+    box-sizing: border-box;
 }
 
 .filter-checkbox__input {
