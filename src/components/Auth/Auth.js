@@ -2,11 +2,21 @@ import React, {useCallback} from 'react';
 import Logo from '../Logo/Logo';
 
 import './Auth.css';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import SubmitButton from '../SubmitButton/SubmitButton';
 import AccountTitle from '../AccountTitle/AccountTitle';
 
-function Auth({ formName, title, submitButtonText, onSubmitClick, linkLabel, linkText, linkPath, children }) {
+function Auth({
+                  isLoading,
+                  formName,
+                  title,
+                  submitButtonText,
+                  onSubmitClick,
+                  linkLabel,
+                  linkText,
+                  linkPath,
+                  children
+              }) {
 
     const submitFormHandler = useCallback((e) => {
         e.preventDefault();
@@ -24,7 +34,12 @@ function Auth({ formName, title, submitButtonText, onSubmitClick, linkLabel, lin
                     {children}
                 </fieldset>
                 <fieldset className='auth__buttons-container'>
-                    <SubmitButton className='auth__submit-button' text={submitButtonText} type='submit'/>
+                    <SubmitButton
+                        className='auth__submit-button'
+                        text={submitButtonText}
+                        type='submit'
+                        disabled={isLoading}
+                    />
                     <p className='auth__link-label'>{linkLabel}<Link className='auth__link-text'
                                                                      to={linkPath}>{linkText}</Link></p>
                 </fieldset>

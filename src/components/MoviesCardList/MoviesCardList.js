@@ -3,7 +3,7 @@ import React from 'react';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList({ moviesList }) {
+function MoviesCardList({moviesList, isFavoriteCardsList, onCardClick, onActionClick}) {
     return (
         <section className='movies-card-list'>
             <h2 className='movies-card-list__header'>{/* HIDDEN */}Список найденных фильмов</h2>
@@ -15,7 +15,10 @@ function MoviesCardList({ moviesList }) {
                                 name={card.name}
                                 duration={card.duration}
                                 imgUrl={card.imgUrl}
-                                actionType={card.actionType}
+                                isFavoriteListItem={isFavoriteCardsList}
+                                isSavedCard={card.isSavedCard}
+                                onCardClick={onCardClick}
+                                onActionClick={onActionClick}
                             />
                         </li>
                     ))

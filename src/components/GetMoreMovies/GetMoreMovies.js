@@ -1,11 +1,11 @@
 import React from 'react';
 import './GetMoreMovies.css';
-import LoadMoreButton from "../LoadMoreButton/LoadMoreButton";
+import LoadMoreButton from '../LoadMoreButton/LoadMoreButton';
 
-function GetMoreMovies({onLoadMoreButtonClick}) {
+function GetMoreMovies({onLoadMoreButtonClick, disabled}) {
     return (
         <div className='get-more-movies'>
-            <LoadMoreButton onClick={onLoadMoreButtonClick}/>
+            <LoadMoreButton onClick={onLoadMoreButtonClick} disabled={disabled}/>
         </div>
     );
 }

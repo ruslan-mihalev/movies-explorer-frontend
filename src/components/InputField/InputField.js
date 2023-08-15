@@ -13,7 +13,8 @@ function InputField({
                         maxLength = null,
                         value,
                         onChange,
-                        errorText
+                        errorText,
+                        disabled
                     }) {
 
     const inputClassName = `input-field ${errorText ? 'input-field_errored' : ''}`;
@@ -31,7 +32,8 @@ function InputField({
                 required={required}
                 placeholder={placeHolder}
                 value={value}
-                onChange={onChange}/>
+                onChange={onChange}
+                disabled={disabled}/>
             {errorText ? (<span className={spanClassName}>{errorText}</span>) : null}
         </>
     );
