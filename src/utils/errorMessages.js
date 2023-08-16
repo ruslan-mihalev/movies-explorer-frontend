@@ -1,11 +1,12 @@
 
 export const NO_ERROR = '';
 export const EMPTY_QUERY_ERROR = 'Нужно ввести ключевое слово';
-export  const WRONG_EMAIL_OR_PASSWORD_ERROR = 'Вы ввели неправильный логин или пароль.';
-export  const TOKEN_ABSENT_ERROR = 'При авторизации произошла ошибка. Токен не передан или передан не в том формате.';
-export  const WRONG_TOKEN_ERROR = 'При авторизации произошла ошибка. Переданный токен некорректен.';
-export  const EMAIL_COLLISION_ERROR = 'Пользователь с таким email уже существует.';
-export  const USER_REGISTRATION_ERROR = 'При регистрации пользователя произошла ошибка.';
-export  const PROFILE_UPDATE_ERROR = 'При обновлении профиля произошла ошибка.';
-export  const HTTP_500_ERROR = 'На сервере произошла ошибка.';
-export  const HTTP_404_ERROR = 'Страница по указанному маршруту не найдена.';
+export const BAD_REQUEST_ERROR_MESSAGE = 'Переданы некорректные данные';
+export  const WRONG_EMAIL_OR_PASSWORD_ERROR_MESSAGE = 'Вы ввели неправильный логин или пароль.';
+export const USER_AUTHORIZATION_ERROR_MESSAGE = 'При авторизации произошла ошибка.';
+export  const EMAIL_COLLISION_ERROR_MESSAGE = 'Пользователь с таким email уже существует.';
+export  const USER_REGISTRATION_ERROR_MESSAGE = 'При регистрации пользователя произошла ошибка.';
+export  const PROFILE_UPDATE_ERROR_MESSAGE = 'При обновлении профиля произошла ошибка.';
+export  const SIGNOUT_ERROR_MESSAGE = 'При выходе из аккаунта произошла ошибка.';
+export  const INTERNAL_SERVER_ERROR_MESSAGE = 'На сервере произошла ошибка.';
+export  const PAGE_NOT_FOUND_ERROR_MESSAGE = 'Страница по указанному маршруту не найдена.';

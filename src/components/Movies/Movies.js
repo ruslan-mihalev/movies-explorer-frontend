@@ -21,7 +21,7 @@ function Movies({
 
     return (
         <main className='movies'>
-            <Header isAuthorized={true}/>
+            <Header/>
             <h1 className='movies__header'>{/* HIDDEN */}Фильмы</h1>
             <SearchPanel
                 onSearchQuerySubmit={onSearchQuerySubmit}

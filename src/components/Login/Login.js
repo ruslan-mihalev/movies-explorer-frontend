@@ -2,10 +2,10 @@ import React, {useCallback} from 'react';
 
 import Auth from '../Auth/Auth';
 import InputField from '../InputField/InputField';
-import {useForm} from '../../utils/hooks/useForm';
+import {useFormWithValidation} from "../../utils/hooks/useFormWithValidation";
 
 function Login({isLoading, onLogin}) {
-    const {values, handleChange} = useForm({email: '', password: ''})
+    const {values, errors, handleChange, isFormValid} = useFormWithValidation({email: '', password: ''})
 
     const handleSubmit = useCallback(() => {
         onLogin(values);
@@ -20,16 +20,17 @@ function Login({isLoading, onLogin}) {
             linkLabel='Ещё не зарегистрированы?'
             linkText='Регистрация'
             linkPath='/signup'
-            isLoading={isLoading}
+            isLoading={isLoading || !isFormValid}
         >
             <InputField labelText='E-mail' type='email' required={true}
                         inputName='email' inputId='login-email'
                         value={values.email} onChange={handleChange}
-                        disabled={isLoading}/>
+                        disabled={isLoading} errorText={errors.email}/>
             <InputField labelText='Пароль' type='password' required={true}
                         inputName='password' inputId='login-password'
                         value={values.password} onChange={handleChange}
-                        disabled={isLoading}/>
+                        disabled={isLoading}
+                        minLength={8} errorText={errors.password}/>
         </Auth>
     );
 }

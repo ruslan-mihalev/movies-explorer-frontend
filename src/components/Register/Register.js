@@ -2,10 +2,10 @@ import React, {useCallback} from 'react';
 
 import Auth from '../Auth/Auth';
 import InputField from '../InputField/InputField';
-import {useForm} from '../../utils/hooks/useForm';
+import {useFormWithValidation} from "../../utils/hooks/useFormWithValidation";
 
 function Register({isLoading, onRegister}) {
-    const {values, handleChange} = useForm({name: '', email: '', password: ''});
+    const {values, errors, handleChange, isFormValid} = useFormWithValidation({name: '', email: '', password: ''});
 
     const handleSubmit = useCallback(() => {
         onRegister(values);
@@ -20,21 +20,22 @@ function Register({isLoading, onRegister}) {
             linkLabel='Уже зарегистрированы?'
             linkText='Войти'
             linkPath='/signin'
-            isLoading={isLoading}
+            isLoading={isLoading || !isFormValid}
         >
             <InputField labelText='Имя' type='text' required={true}
                         inputName='name' inputId='register-name'
                         value={values.name} onChange={handleChange}
-                        disabled={isLoading}/>
+                        disabled={isLoading}
+                        minLength={2} maxLength={30} errorText={errors.name}/>
             <InputField labelText='E-mail' type='email' required={true}
                         inputName='email' inputId='register-email'
                         value={values.email} onChange={handleChange}
-                        disabled={isLoading}/>
+                        disabled={isLoading} errorText={errors.email}/>
             <InputField labelText='Пароль' type='password' required={true}
                         inputName='password' inputId='register-password'
                         value={values.password} onChange={handleChange}
-                        errorText='Что-то пошло не так...'
-                        disabled={isLoading}/>
+                        disabled={isLoading}
+                        minLength={8} errorText={errors.password}/>
         </Auth>
     );
 }

@@ -24,7 +24,7 @@ function SearchPanel({
     return (
         <section className="search-panel">
             <h2 className='search-panel__header'>{/* HIDDEN */}Поиск по фильмам</h2>
-            <form className='search-panel__form' name='search-form' onSubmit={submitFormHandler}>
+            <form className='search-panel__form' name='search-form' onSubmit={submitFormHandler} noValidate={true}>
                 <SearchField
                     queryText={searchQuery}
                     onQueryTextChange={searchQueryTextChangeHandler}

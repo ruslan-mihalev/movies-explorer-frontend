@@ -8,7 +8,7 @@ import StaticField from '../StaticField/StaticField';
 import SubmitButton from '../SubmitButton/SubmitButton';
 import InputField from '../InputField/InputField';
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
-import {useForm} from '../../utils/hooks/useForm';
+import {useFormWithValidation} from "../../utils/hooks/useFormWithValidation";
 
 function Profile({
                      isLoading,
@@ -17,11 +17,11 @@ function Profile({
                      onTurnEditModeOnClick,
                      onSignOutClick
                  }) {
-    const {values, handleChange} = useForm({name: '', email: ''});
+    const {values, errors, handleChange, isFormValid} = useFormWithValidation({name: '', email: ''});
 
     const currentUser = useContext(CurrentUserContext);
 
-    const [profileUpdateError] = useState('При обновлении профиля произошла ошибка.');
+    const [profileUpdateError] = useState('');
 
     const handleProfileChangesSubmit = useCallback((e) => {
         e.preventDefault();
@@ -30,10 +30,15 @@ function Profile({
 
     return (
         <main className='profile'>
-            <Header isAuthorized={true}/>
+            <Header/>
             <section className='profile__content'>
                 {isEditMode ? (
-                    <form className='profile__form' name='edit-profile-form' onSubmit={handleProfileChangesSubmit}>
+                    <form
+                        className='profile__form'
+                        name='edit-profile-form'
+                        onSubmit={handleProfileChangesSubmit}
+                        noValidate={true}
+                    >
                         <div className='profile__title-container'>
                             <AccountTitle>Привет, {currentUser?.name}!</AccountTitle>
                         </div>
@@ -41,11 +46,12 @@ function Profile({
                             <InputField labelText='Имя' type='text' required={true}
                                         inputName='name' inputId='edit-name'
                                         value={values.name} onChange={handleChange}
-                                        disabled={isLoading}/>
+                                        disabled={isLoading}
+                                        minLength={2} maxLength={30} errorText={errors.name}/>
                             <InputField labelText='E-mail' type='email' required={true}
                                         inputName='email' inputId='edit-email'
                                         value={values.email} onChange={handleChange}
-                                        disabled={isLoading}/>
+                                        disabled={isLoading} errorText={errors.email}/>
                         </fieldset>
 
                         <fieldset className='profile__buttons-container'>
@@ -54,7 +60,7 @@ function Profile({
                             <SubmitButton
                                 className='profile__save-button'
                                 text='Сохранить'
-                                disabled={isLoading}
+                                disabled={isLoading || !isFormValid}
                             />
                         </fieldset>
                     </form>

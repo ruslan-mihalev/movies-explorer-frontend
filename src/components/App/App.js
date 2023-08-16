@@ -10,18 +10,84 @@ import Movies from '../Movies/Movies';
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import React, {useCallback, useEffect, useState} from 'react';
 import MessageAlert from '../MessageAlert/MessageAlert';
-import {NO_ERROR} from "../../utils/errorMessages";
+import {
+    BAD_REQUEST_ERROR_MESSAGE,
+    PAGE_NOT_FOUND_ERROR_MESSAGE,
+    INTERNAL_SERVER_ERROR_MESSAGE,
+    NO_ERROR,
+    WRONG_EMAIL_OR_PASSWORD_ERROR_MESSAGE,
+    USER_REGISTRATION_ERROR_MESSAGE,
+    USER_AUTHORIZATION_ERROR_MESSAGE,
+    EMAIL_COLLISION_ERROR_MESSAGE,
+    PROFILE_UPDATE_ERROR_MESSAGE,
+    SIGNOUT_ERROR_MESSAGE
+} from "../../utils/errorMessages";
+import {StatusCodes} from "http-status-codes";
+import {
+    signin,
+    signup,
+    signout,
+    updateUser,
+    getUser,
+    deleteFavoriteMovie,
+    postFavoriteMovie,
+    getFavoriteMovies
+} from "../../utils/MainApi";
 
 function App() {
 
+    const [email, setEmail] = useState('');
     const [currentUser, setCurrentUser] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(NO_ERROR);
     const [isProfileEditMode, setIsProfileEditMode] = useState(false);
     const [moviesList, setMoviesList] = useState([]);
     const [savedMoviesList, setSavedMoviesList] = useState([]);
     const [isShortFilmSwitchedOn, setShortFilmSwitchedOn] = useState(false);
     const [isShortFilmSwitchedOnForSavedMovies, setShortFilmSwitchedOnForSavedMovies] = useState(false);
+
+    const KEY_EMAIL = 'email';
+    const KEY_FAVORITE_MOVIES = 'favorite-movies';
+
+    useEffect(() => {
+        const savedEmail = localStorage.getItem(KEY_EMAIL);
+        console.log(`savedEmail from local storage: ${savedEmail}`);
+        if (savedEmail) {
+            setEmail(savedEmail);
+        }
+    }, []);
+
+
+    // Request currentUser
+    useEffect(() => {
+        console.log(`email forgetting user: ${email}`);
+        if (email) {
+            getUser()
+                .then((body) => {
+                    console.log(`Users body: ${JSON.stringify(body)}`);
+                    setCurrentUser(body);
+                })
+                .catch((error) => {
+                    if (error.statusCode === StatusCodes.BAD_REQUEST) {
+                        setErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
+                    } else if (error.statusCode === StatusCodes.NOT_FOUND) {
+                        setErrorMessage(PAGE_NOT_FOUND_ERROR_MESSAGE);
+                    } else {
+                        setErrorMessage(INTERNAL_SERVER_ERROR_MESSAGE);
+                    }
+                });
+        } else {
+            setCurrentUser(null);
+        }
+    }, [email]);
+
+    // Request Saved Movies
+    useEffect(() => {
+    }, []);
+
+    // Request all movies
+    useEffect(() => {
+    }, []);
 
     useEffect(() => {
         setMoviesList([
@@ -106,18 +172,89 @@ function App() {
 
     const handleRegister = useCallback((inputs) => {
         console.log(`handleRegister() inputs: ${JSON.stringify(inputs)}`);
+        signup(inputs)
+            .then((body) => {
+                setEmail(body.email);
+                console.log(`body: ${JSON.stringify(body)}`);
+            })
+            .catch((error) => {
+                if (error.statusCode === StatusCodes.BAD_REQUEST) {
+                    setErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
+                } else if (error.statusCode === StatusCodes.NOT_FOUND) {
+                    setErrorMessage(PAGE_NOT_FOUND_ERROR_MESSAGE);
+                } else if (error.statusCode === StatusCodes.CONFLICT) {
+                    setErrorMessage(EMAIL_COLLISION_ERROR_MESSAGE);
+                } else if (error.statusCode === StatusCodes.INTERNAL_SERVER_ERROR) {
+                    setErrorMessage(INTERNAL_SERVER_ERROR_MESSAGE);
+                } else {
+                    setErrorMessage(USER_REGISTRATION_ERROR_MESSAGE);
+                }
+            });
     }, []);
 
     const handleLogin = useCallback((inputs) => {
         console.log(`handleLogin() inputs: ${JSON.stringify(inputs)}`);
+        signin(inputs)
+            .then((body) => {
+                console.log(`body: ${JSON.stringify(body)}`);
+                localStorage.setItem(KEY_EMAIL, body.email);
+                setEmail(body.email);
+            })
+            .catch((error) => {
+                if (error.statusCode === StatusCodes.BAD_REQUEST) {
+                    setErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
+                } else if (error.statusCode === StatusCodes.UNAUTHORIZED) {
+                    setErrorMessage(WRONG_EMAIL_OR_PASSWORD_ERROR_MESSAGE);
+                } else if (error.statusCode === StatusCodes.NOT_FOUND) {
+                    setErrorMessage(PAGE_NOT_FOUND_ERROR_MESSAGE);
+                } else if (error.statusCode === StatusCodes.INTERNAL_SERVER_ERROR) {
+                    setErrorMessage(INTERNAL_SERVER_ERROR_MESSAGE);
+                } else {
+                    setErrorMessage(USER_AUTHORIZATION_ERROR_MESSAGE);
+                }
+            });
     }, []);
 
     const handleUpdateProfile = useCallback((inputs) => {
         console.log(`handleUpdateProfile() inputs: ${JSON.stringify(inputs)}`);
+        updateUser(inputs)
+            .then((body) => {
+                console.log(`body: ${JSON.stringify(body)}`);
+                setCurrentUser(body);
+                setEmail(body.email);
+            })
+            .catch((error) => {
+                if (error.statusCode === StatusCodes.BAD_REQUEST) {
+                    setErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
+                } else if (error.statusCode === StatusCodes.NOT_FOUND) {
+                    setErrorMessage(PAGE_NOT_FOUND_ERROR_MESSAGE);
+                } else if (error.statusCode === StatusCodes.CONFLICT) {
+                    setErrorMessage(EMAIL_COLLISION_ERROR_MESSAGE);
+                } else if (error.statusCode === StatusCodes.INTERNAL_SERVER_ERROR) {
+                    setErrorMessage(INTERNAL_SERVER_ERROR_MESSAGE);
+                } else {
+                    setErrorMessage(PROFILE_UPDATE_ERROR_MESSAGE);
+                }
+            });
     }, []);
 
-    const handleSignout = useCallback((inputs) => {
-        console.log(`handleSignout() inputs: ${JSON.stringify(inputs)}`);
+    const handleSignout = useCallback(() => {
+        console.log(`handleSignout()`);
+        signout()
+            .then((body) => {
+                console.log(`body: ${JSON.stringify(body)}`);
+                localStorage.removeItem(KEY_EMAIL);
+                setEmail('');
+            })
+            .catch((error) => {
+                if (error.statusCode === StatusCodes.BAD_REQUEST) {
+                    setErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
+                } else if (error.statusCode === StatusCodes.INTERNAL_SERVER_ERROR) {
+                    setErrorMessage(INTERNAL_SERVER_ERROR_MESSAGE);
+                } else {
+                    setErrorMessage(SIGNOUT_ERROR_MESSAGE);
+                }
+            });
     }, []);
 
     const handleSearchMoviesQuerySubmit = useCallback((query) => {

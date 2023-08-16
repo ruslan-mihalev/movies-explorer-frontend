@@ -19,6 +19,7 @@ function SearchField({queryText, onQueryTextChange, disabled}) {
                 value={queryText}
                 onChange={queryTextChangeHandler}
                 disabled={disabled}
+                required={true}
             />
             <button
                 className='search-fieldset__button'

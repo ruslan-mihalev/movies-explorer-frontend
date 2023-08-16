@@ -20,7 +20,7 @@ function SavedMovies({
 
     return (
         <main className='saved-movies'>
-            <Header isAuthorized={true}/>
+            <Header/>
             <h1 className='saved-movies__header'>{/* HIDDEN */}Сохраненные фильмы</h1>
             <SearchPanel
                 onSearchQuerySubmit={onSearchQuerySubmit}

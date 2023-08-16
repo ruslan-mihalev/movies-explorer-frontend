@@ -1,4 +1,5 @@
 import {BASE_API_URL as BASE_URL} from './hosts';
+import HttpError from "./HttpError";
 
 const _defaultHeaders = {
     'Content-Type': 'application/json'
@@ -7,10 +8,12 @@ const _defaultHeaders = {
 async function _responseHandler(response) {
     if (response.ok) {
         return response.json();
+    } else {
+        return response.json()
+            .then((body) => {
+                return Promise.reject(new HttpError(response.status, response.statusText, body));
+            });
     }
-
-    // если ошибка, отклоняем промис
-    return Promise.reject(`Ошибка: ${response.status}`);
 }
 
 async function _doRequest(method, url, body) {

@@ -25,7 +25,7 @@ function Auth({
 
     return (
         <main className='auth'>
-            <form className='auth__form' name={formName} onSubmit={submitFormHandler}>
+            <form className='auth__form' name={formName} onSubmit={submitFormHandler} noValidate={true}>
                 <div className='auth__title-container'>
                     <Logo/>
                     <AccountTitle>{title}</AccountTitle>
