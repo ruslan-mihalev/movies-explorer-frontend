@@ -1,6 +1,6 @@
 import './App.css';
 import Main from '../Main/Main';
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, useNavigate} from 'react-router-dom';
 import NotFound from '../NotFound/NotFound';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
@@ -33,43 +33,40 @@ import {
     postFavoriteMovie,
     getFavoriteMovies
 } from "../../utils/MainApi";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
 
-    const [email, setEmail] = useState('');
+    const KEY_EMAIL = 'email';
+    const KEY_FAVORITE_MOVIES = 'favorite-movies';
+
+    const [email, setEmail] = useState(localStorage.getItem(KEY_EMAIL));
     const [currentUser, setCurrentUser] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(NO_ERROR);
+    const [inlineErrorMessage, setInlineErrorMessage] = useState(NO_ERROR);
     const [isProfileEditMode, setIsProfileEditMode] = useState(false);
     const [moviesList, setMoviesList] = useState([]);
     const [savedMoviesList, setSavedMoviesList] = useState([]);
     const [isShortFilmSwitchedOn, setShortFilmSwitchedOn] = useState(false);
     const [isShortFilmSwitchedOnForSavedMovies, setShortFilmSwitchedOnForSavedMovies] = useState(false);
 
-    const KEY_EMAIL = 'email';
-    const KEY_FAVORITE_MOVIES = 'favorite-movies';
-
-    useEffect(() => {
-        const savedEmail = localStorage.getItem(KEY_EMAIL);
-        console.log(`savedEmail from local storage: ${savedEmail}`);
-        if (savedEmail) {
-            setEmail(savedEmail);
-        }
-    }, []);
-
+    const navigate = useNavigate();
 
     // Request currentUser
     useEffect(() => {
-        console.log(`email forgetting user: ${email}`);
         if (email) {
             getUser()
                 .then((body) => {
-                    console.log(`Users body: ${JSON.stringify(body)}`);
                     setCurrentUser(body);
+                    localStorage.setItem(KEY_EMAIL, body.email);
+                    setEmail(body.email);
                 })
                 .catch((error) => {
                     if (error.statusCode === StatusCodes.BAD_REQUEST) {
                         setErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
+                    } else if (error.statusCode === StatusCodes.UNAUTHORIZED) {
+                        handleSignout();
                     } else if (error.statusCode === StatusCodes.NOT_FOUND) {
                         setErrorMessage(PAGE_NOT_FOUND_ERROR_MESSAGE);
                     } else {
@@ -171,80 +168,82 @@ function App() {
     }, []);
 
     const handleRegister = useCallback((inputs) => {
-        console.log(`handleRegister() inputs: ${JSON.stringify(inputs)}`);
         signup(inputs)
+            .then(() => signin(inputs))
             .then((body) => {
+                localStorage.setItem(KEY_EMAIL, body.email);
                 setEmail(body.email);
-                console.log(`body: ${JSON.stringify(body)}`);
+                navigate('/movies', { replace: true })
+                setInlineErrorMessage('');
             })
             .catch((error) => {
                 if (error.statusCode === StatusCodes.BAD_REQUEST) {
-                    setErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
+                    setInlineErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
                 } else if (error.statusCode === StatusCodes.NOT_FOUND) {
-                    setErrorMessage(PAGE_NOT_FOUND_ERROR_MESSAGE);
+                    setInlineErrorMessage(PAGE_NOT_FOUND_ERROR_MESSAGE);
                 } else if (error.statusCode === StatusCodes.CONFLICT) {
-                    setErrorMessage(EMAIL_COLLISION_ERROR_MESSAGE);
+                    setInlineErrorMessage(EMAIL_COLLISION_ERROR_MESSAGE);
                 } else if (error.statusCode === StatusCodes.INTERNAL_SERVER_ERROR) {
-                    setErrorMessage(INTERNAL_SERVER_ERROR_MESSAGE);
+                    setInlineErrorMessage(INTERNAL_SERVER_ERROR_MESSAGE);
                 } else {
-                    setErrorMessage(USER_REGISTRATION_ERROR_MESSAGE);
+                    setInlineErrorMessage(USER_REGISTRATION_ERROR_MESSAGE);
                 }
             });
     }, []);
 
     const handleLogin = useCallback((inputs) => {
-        console.log(`handleLogin() inputs: ${JSON.stringify(inputs)}`);
         signin(inputs)
             .then((body) => {
-                console.log(`body: ${JSON.stringify(body)}`);
                 localStorage.setItem(KEY_EMAIL, body.email);
                 setEmail(body.email);
+                navigate('/movies', { replace: true })
+                setInlineErrorMessage('');
             })
             .catch((error) => {
                 if (error.statusCode === StatusCodes.BAD_REQUEST) {
-                    setErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
+                    setInlineErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
                 } else if (error.statusCode === StatusCodes.UNAUTHORIZED) {
-                    setErrorMessage(WRONG_EMAIL_OR_PASSWORD_ERROR_MESSAGE);
+                    setInlineErrorMessage(WRONG_EMAIL_OR_PASSWORD_ERROR_MESSAGE);
                 } else if (error.statusCode === StatusCodes.NOT_FOUND) {
-                    setErrorMessage(PAGE_NOT_FOUND_ERROR_MESSAGE);
+                    setInlineErrorMessage(PAGE_NOT_FOUND_ERROR_MESSAGE);
                 } else if (error.statusCode === StatusCodes.INTERNAL_SERVER_ERROR) {
-                    setErrorMessage(INTERNAL_SERVER_ERROR_MESSAGE);
+                    setInlineErrorMessage(INTERNAL_SERVER_ERROR_MESSAGE);
                 } else {
-                    setErrorMessage(USER_AUTHORIZATION_ERROR_MESSAGE);
+                    setInlineErrorMessage(USER_AUTHORIZATION_ERROR_MESSAGE);
                 }
             });
     }, []);
 
     const handleUpdateProfile = useCallback((inputs) => {
-        console.log(`handleUpdateProfile() inputs: ${JSON.stringify(inputs)}`);
         updateUser(inputs)
             .then((body) => {
-                console.log(`body: ${JSON.stringify(body)}`);
                 setCurrentUser(body);
                 setEmail(body.email);
+                setIsProfileEditMode(false);
+                setInlineErrorMessage('');
             })
             .catch((error) => {
                 if (error.statusCode === StatusCodes.BAD_REQUEST) {
-                    setErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
+                    setInlineErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
                 } else if (error.statusCode === StatusCodes.NOT_FOUND) {
-                    setErrorMessage(PAGE_NOT_FOUND_ERROR_MESSAGE);
+                    setInlineErrorMessage(PAGE_NOT_FOUND_ERROR_MESSAGE);
                 } else if (error.statusCode === StatusCodes.CONFLICT) {
-                    setErrorMessage(EMAIL_COLLISION_ERROR_MESSAGE);
+                    setInlineErrorMessage(EMAIL_COLLISION_ERROR_MESSAGE);
                 } else if (error.statusCode === StatusCodes.INTERNAL_SERVER_ERROR) {
-                    setErrorMessage(INTERNAL_SERVER_ERROR_MESSAGE);
+                    setInlineErrorMessage(INTERNAL_SERVER_ERROR_MESSAGE);
                 } else {
-                    setErrorMessage(PROFILE_UPDATE_ERROR_MESSAGE);
+                    setInlineErrorMessage(PROFILE_UPDATE_ERROR_MESSAGE);
                 }
             });
     }, []);
 
     const handleSignout = useCallback(() => {
-        console.log(`handleSignout()`);
         signout()
             .then((body) => {
-                console.log(`body: ${JSON.stringify(body)}`);
                 localStorage.removeItem(KEY_EMAIL);
                 setEmail('');
+                navigate('/', { replace: true });
+                setInlineErrorMessage('');
             })
             .catch((error) => {
                 if (error.statusCode === StatusCodes.BAD_REQUEST) {
@@ -270,7 +269,6 @@ function App() {
     }, []);
 
     const handleTurnEditModeOnClick = useCallback(() => {
-        console.log(`handleTurnEditModeOnClick()`);
         setIsProfileEditMode(true);
     }, []);
 
@@ -292,46 +290,54 @@ function App() {
                            }/>
                     <Route path='/movies'
                            element={
-                               <Movies
-                                   isLoading={isLoading}
-                                   moviesList={moviesList}
-                                   onSearchQuerySubmit={handleSearchMoviesQuerySubmit}
-                                   isShortFilmSwitchedOn={isShortFilmSwitchedOn}
-                                   onShortFilmSwitchStateChange={setShortFilmSwitchedOn}
-                                   onGetMoreMoviesClick={handleOnGerMoreMoviesClick}
-                                   onCardClick={handleCardClick}
-                                   onActionClick={handleActionClick}
-                               />
+                               <ProtectedRoute needRedirect={!email}>
+                                   <Movies
+                                       isLoading={isLoading}
+                                       moviesList={moviesList}
+                                       onSearchQuerySubmit={handleSearchMoviesQuerySubmit}
+                                       isShortFilmSwitchedOn={isShortFilmSwitchedOn}
+                                       onShortFilmSwitchStateChange={setShortFilmSwitchedOn}
+                                       onGetMoreMoviesClick={handleOnGerMoreMoviesClick}
+                                       onCardClick={handleCardClick}
+                                       onActionClick={handleActionClick}
+                                   />
+                               </ProtectedRoute>
                            }
                     />
                     <Route path='/saved-movies'
                            element={
-                               <SavedMovies
-                                   isLoading={isLoading}
-                                   moviesList={savedMoviesList}
-                                   onSearchQuerySubmit={handleSearchSavedMoviesQuerySubmit}
-                                   isShortFilmSwitchedOn={isShortFilmSwitchedOnForSavedMovies}
-                                   onShortFilmSwitchStateChange={setShortFilmSwitchedOnForSavedMovies}
-                                   onCardClick={handleCardClick}
-                                   onActionClick={handleActionClick}
-                               />
+                               <ProtectedRoute needRedirect={!email}>
+                                   <SavedMovies
+                                       isLoading={isLoading}
+                                       moviesList={savedMoviesList}
+                                       onSearchQuerySubmit={handleSearchSavedMoviesQuerySubmit}
+                                       isShortFilmSwitchedOn={isShortFilmSwitchedOnForSavedMovies}
+                                       onShortFilmSwitchStateChange={setShortFilmSwitchedOnForSavedMovies}
+                                       onCardClick={handleCardClick}
+                                       onActionClick={handleActionClick}
+                                   />
+                               </ProtectedRoute>
                            }
                     />
                     <Route path='/profile'
                            element={
-                               <Profile
-                                   isLoading={isLoading}
-                                   isEditMode={isProfileEditMode}
-                                   onUpdateProfile={handleUpdateProfile}
-                                   onSignOutClick={handleSignout}
-                                   onTurnEditModeOnClick={handleTurnEditModeOnClick}
-                               />
+                               <ProtectedRoute needRedirect={!email}>
+                                   <Profile
+                                       isLoading={isLoading}
+                                       serverError={inlineErrorMessage}
+                                       isEditMode={isProfileEditMode}
+                                       onUpdateProfile={handleUpdateProfile}
+                                       onSignOutClick={handleSignout}
+                                       onTurnEditModeOnClick={handleTurnEditModeOnClick}
+                                   />
+                               </ProtectedRoute>
                            }
                     />
                     <Route path='/signin'
                            element={
                                <Login
                                    isLoading={isLoading}
+                                   serverError={inlineErrorMessage}
                                    onLogin={handleLogin}
                                />
                            }
@@ -340,6 +346,7 @@ function App() {
                            element={
                                <Register
                                    isLoading={isLoading}
+                                   serverError={inlineErrorMessage}
                                    onRegister={handleRegister}
                                />
                            }

@@ -4,7 +4,7 @@ import Auth from '../Auth/Auth';
 import InputField from '../InputField/InputField';
 import {useFormWithValidation} from "../../utils/hooks/useFormWithValidation";
 
-function Login({isLoading, onLogin}) {
+function Login({isLoading, serverError, onLogin}) {
     const {values, errors, handleChange, isFormValid} = useFormWithValidation({email: '', password: ''})
 
     const handleSubmit = useCallback(() => {
@@ -21,6 +21,7 @@ function Login({isLoading, onLogin}) {
             linkText='Регистрация'
             linkPath='/signup'
             isLoading={isLoading || !isFormValid}
+            serverError={serverError}
         >
             <InputField labelText='E-mail' type='email' required={true}
                         inputName='email' inputId='login-email'

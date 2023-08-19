@@ -1,7 +1,7 @@
-import { Navigate } from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 
-const ProtectedRoute = ({ element: Component, needRedirect, redirectPath = '/sign-in', ...props }) => {
-    return (needRedirect ? (<Navigate to={redirectPath} replace />) : (<Component {...props} />));
+const ProtectedRoute = ({ needRedirect, redirectPath = '/signin', children }) => {
+    return (needRedirect ? (<Navigate to={redirectPath} replace/>) : children);
 };
 
 export default ProtectedRoute;

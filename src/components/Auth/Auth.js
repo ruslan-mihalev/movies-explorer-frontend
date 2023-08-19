@@ -8,6 +8,7 @@ import AccountTitle from '../AccountTitle/AccountTitle';
 
 function Auth({
                   isLoading,
+                  serverError,
                   formName,
                   title,
                   submitButtonText,
@@ -34,6 +35,9 @@ function Auth({
                     {children}
                 </fieldset>
                 <fieldset className='auth__buttons-container'>
+                    <p className={`auth__submit-error ${serverError ? 'auth__submit-error_visible' : ''}`}>
+                        {serverError}
+                    </p>
                     <SubmitButton
                         className='auth__submit-button'
                         text={submitButtonText}

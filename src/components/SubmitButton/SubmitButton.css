@@ -14,6 +14,11 @@
     cursor: pointer;
 }
 
+.submit-button:disabled {
+    color: #C2C2C2;
+    background: #F8F8F8;
+}
+
 .submit-button:hover {
     opacity: .8;
     transition: opacity .2s;

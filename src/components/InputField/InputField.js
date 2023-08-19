@@ -11,6 +11,7 @@ function InputField({
                         placeHolder,
                         minLength = null,
                         maxLength = null,
+                        pattern = null,
                         value,
                         onChange,
                         errorText,
@@ -29,6 +30,7 @@ function InputField({
                 type={type}
                 minLength={minLength}
                 maxLength={maxLength}
+                pattern={pattern}
                 required={required}
                 placeholder={placeHolder}
                 value={value}

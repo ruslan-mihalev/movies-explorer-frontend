@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 
 import './Profile.css';
 import Header from '../Header/Header';
@@ -12,21 +12,37 @@ import {useFormWithValidation} from "../../utils/hooks/useFormWithValidation";
 
 function Profile({
                      isLoading,
+                     serverError,
                      isEditMode,
                      onUpdateProfile,
                      onTurnEditModeOnClick,
                      onSignOutClick
                  }) {
-    const {values, errors, handleChange, isFormValid} = useFormWithValidation({name: '', email: ''});
 
     const currentUser = useContext(CurrentUserContext);
 
-    const [profileUpdateError] = useState('');
+    const {values, errors, setValues, handleChange, isFormValid} = useFormWithValidation({
+        name: currentUser?.name,
+        email: currentUser?.email
+    });
+
+    useEffect(() => {
+        if (currentUser?.name && currentUser?.email) {
+            setValues({
+                name: currentUser?.name,
+                email: currentUser?.email
+            });
+        }
+    }, [currentUser?.name, currentUser?.email]);
 
     const handleProfileChangesSubmit = useCallback((e) => {
         e.preventDefault();
         onUpdateProfile(values)
     }, [onUpdateProfile, values.name, values.email]);
+
+    const isValuesEqual = () => {
+        return values.name === currentUser.name && values.email === currentUser.email;
+    };
 
     return (
         <main className='profile'>
@@ -55,12 +71,12 @@ function Profile({
                         </fieldset>
 
                         <fieldset className='profile__buttons-container'>
-                            {profileUpdateError ? (
-                                <p className='profile__update-error'>{profileUpdateError}</p>) : null}
+                            {serverError ? (
+                                <p className='profile__update-error'>{serverError}</p>) : null}
                             <SubmitButton
                                 className='profile__save-button'
                                 text='Сохранить'
-                                disabled={isLoading || !isFormValid}
+                                disabled={isLoading || !isFormValid || isValuesEqual()}
                             />
                         </fieldset>
                     </form>
@@ -72,9 +88,9 @@ function Profile({
 
                         <div className='profile__fields-container'>
                             <StaticField className='profile__name-field'
-                                         labelText='Имя' value='Виталий'/>
+                                         labelText='Имя' value={currentUser?.name}/>
                             <StaticField className='profile__email-field'
-                                         labelText='E-mail' value='pochta@yandex.ru'/>
+                                         labelText='E-mail' value={currentUser?.email}/>
                         </div>
 
                         <div className='profile__buttons-container'>

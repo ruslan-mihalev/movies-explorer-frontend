@@ -55,8 +55,22 @@
     border: none;
     gap: 14px;
     margin: 0;
-    padding: 96px 0 30px;
+    padding: 44px 0 30px;
     min-width: 0;
+}
+
+.auth__submit-error {
+    display: block;
+    visibility: hidden;
+    min-height: 14px;
+    font-weight: 400;
+    font-size: 11px;
+    color: #FF004C;
+    text-align: center;
+}
+
+.auth__submit-error_visible {
+    visibility: visible;
 }
 
 .auth__submit-button {
@@ -98,8 +112,13 @@
         padding: 13px 0 4px;
     }
 
+    .auth__fields-container {
+        flex: 1;
+        padding: 36px 0 0;
+    }
+
     .auth__buttons-container {
-        padding: 32px 0 13px;
+        padding: 8px 0 13px;
         gap: 16px;
     }
 

@@ -4,7 +4,7 @@ import Auth from '../Auth/Auth';
 import InputField from '../InputField/InputField';
 import {useFormWithValidation} from "../../utils/hooks/useFormWithValidation";
 
-function Register({isLoading, onRegister}) {
+function Register({isLoading, serverError, onRegister}) {
     const {values, errors, handleChange, isFormValid} = useFormWithValidation({name: '', email: '', password: ''});
 
     const handleSubmit = useCallback(() => {
@@ -21,12 +21,13 @@ function Register({isLoading, onRegister}) {
             linkText='Войти'
             linkPath='/signin'
             isLoading={isLoading || !isFormValid}
+            serverError={serverError}
         >
             <InputField labelText='Имя' type='text' required={true}
                         inputName='name' inputId='register-name'
                         value={values.name} onChange={handleChange}
                         disabled={isLoading}
-                        minLength={2} maxLength={30} errorText={errors.name}/>
+                        minLength={2} maxLength={30} errorText={errors.name} pattern={'^[A-Za-zА-Яа-яËё\ ]+$'}/>
             <InputField labelText='E-mail' type='email' required={true}
                         inputName='email' inputId='register-email'
                         value={values.email} onChange={handleChange}
