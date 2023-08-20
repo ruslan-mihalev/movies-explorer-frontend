@@ -7,39 +7,52 @@ import Footer from '../Footer/Footer';
 import MoviesDivider from '../MoviesDivider/MoviesDivider';
 import SearchPanel from '../SearchPanel/SearchPanel';
 import LoadingStatus from '../LoadingStatus/LoadingStatus';
-import {deleteFavoriteMovie, postFavoriteMovie, getFavoriteMovies} from '../../utils/MainApi';
-import {convertMovie} from '../../utils/MoviesUtils';
+import {
+    EMPTY_QUERY_ERROR,
+    EMPTY_RESULT_ERROR,
+    NO_ERROR
+} from '../../utils/errorMessages';
+import {filterMovies} from '../../utils/MoviesUtils';
+import {useFavoriteMovies} from '../../contexts/FavoriteMoviesContext';
 
-function SavedMovies() {
+function SavedMovies({handleRemoveMovieFromFavorite}) {
 
     const [isLoading, setIsLoading] = useState(false);
-    const [moviesList, setMoviesList] = useState([]);
     const [filteredMoviesList, setFilteredMoviesList] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [submittedSearchQuery, setSubmittedSearchQuery] = useState('');
     const [isShortFilmSwitchedOn, setShortFilmSwitchedOn] = useState(false);
+    const [searchMoviesError, setSearchMoviesError] = useState(NO_ERROR);
+    const {favoriteMovies} = useFavoriteMovies();
 
     useEffect(() => {
-        setIsLoading(true);
-        getFavoriteMovies()
-            .then((favoriteMovies) => {
-            })
-            .catch(() => {
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
-    }, []);
+        console.log(`favoriteMovies.length: ${favoriteMovies.length}`);
+        if (favoriteMovies.length) {
+            const filteredMovies = filterMovies(favoriteMovies, submittedSearchQuery, isShortFilmSwitchedOn);
+            setSearchMoviesError(filteredMovies.length ? NO_ERROR : EMPTY_RESULT_ERROR);
+            setFilteredMoviesList(filteredMovies);
+        }
+    }, [submittedSearchQuery, isShortFilmSwitchedOn, favoriteMovies]);
 
-    const handleSearchQuerySubmit = useCallback((query) => {
-        console.log(`handleSearchQuerySubmit() query: ${query}, shortFilms: ${isShortFilmSwitchedOn}`);
-    }, [isShortFilmSwitchedOn]);
+    const handleSearchSubmit = useCallback(() => {
+        console.log(`handleSearchSubmit() query: ${searchQuery}`);
+        setSearchQuery((prev) => prev.trim());
+
+        if (searchQuery) {
+            setSubmittedSearchQuery(searchQuery);
+        } else {
+            setSearchMoviesError(EMPTY_QUERY_ERROR);
+        }
+    }, [searchQuery]);
 
     const handleCardClick = useCallback((movie) => {
-        console.log(`handleCardClick()`);
-        // navigate('',)
+        console.log(`handleCardClick() movie: ${JSON.stringify(movie)}`);
+        window.open(movie.trailerLink, '_blank');
     }, []);
 
-    const handleActionClick = useCallback((isSavedCard) => {
-        console.log(`handleActionClick() isSavedCard: ${isSavedCard}`);
+    const handleActionClick = useCallback((movie, isSavedCard) => {
+        console.log(`handleActionClick() isSavedCard: ${isSavedCard}, movie: ${JSON.stringify(movie)}`);
+        handleRemoveMovieFromFavorite(movie.movieId);
     }, []);
 
     return (
@@ -47,16 +60,18 @@ function SavedMovies() {
             <Header/>
             <h1 className='saved-movies__header'>{/* HIDDEN */}Сохраненные фильмы</h1>
             <SearchPanel
-                onSearchQuerySubmit={handleSearchQuerySubmit}
+                searchQuery={searchQuery}
+                onSearchQueryChange={setSearchQuery}
+                onSearchSubmit={handleSearchSubmit}
                 isShortFilmSwitchedOn={isShortFilmSwitchedOn}
                 onShortFilmSwitchStateChange={setShortFilmSwitchedOn}
                 disabled={isLoading}
             />
             {
-                (isLoading)
-                    ? (<LoadingStatus/>)
+                (isLoading || searchMoviesError)
+                    ? (<LoadingStatus errorMessage={searchMoviesError}/>)
                     : (<MoviesCardList
-                        moviesList={moviesList}
+                        moviesList={filteredMoviesList}
                         isFavoriteCardsList={true}
                         onCardClick={handleCardClick}
                         onActionClick={handleActionClick}

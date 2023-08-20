@@ -20,7 +20,10 @@ import {
     USER_AUTHORIZATION_ERROR_MESSAGE,
     EMAIL_COLLISION_ERROR_MESSAGE,
     PROFILE_UPDATE_ERROR_MESSAGE,
-    SIGNOUT_ERROR_MESSAGE
+    SIGNOUT_ERROR_MESSAGE,
+    GET_FAVORITE_MOVIES_ERROR_MESSAGE,
+    REMOVE_MOVIE_FROM_FAVORITES_ERROR_MESSAGE,
+    ADD_MOVIE_TO_FAVORITES_ERROR_MESSAGE
 } from "../../utils/errorMessages";
 import {StatusCodes} from "http-status-codes";
 import {
@@ -28,15 +31,13 @@ import {
     signup,
     signout,
     updateUser,
-    getUser,
+    getUser, getFavoriteMovies, deleteFavoriteMovie, postFavoriteMovie,
 } from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
+import {useFavoriteMovies} from '../../contexts/FavoriteMoviesContext';
+import {KEY_EMAIL} from '../../utils/constants';
 
 function App() {
-
-    const KEY_EMAIL = 'email';
-    const KEY_FAVORITE_MOVIES = 'favorite-movies';
 
     const [email, setEmail] = useState(localStorage.getItem(KEY_EMAIL));
     const [currentUser, setCurrentUser] = useState(null);
@@ -44,6 +45,7 @@ function App() {
     const [errorMessage, setErrorMessage] = useState(NO_ERROR);
     const [inlineErrorMessage, setInlineErrorMessage] = useState(NO_ERROR);
     const [isProfileEditMode, setIsProfileEditMode] = useState(false);
+    const {setFavoriteMovies, addToFavorite, removeFromFavorite} = useFavoriteMovies();
 
     const navigate = useNavigate();
 
@@ -72,6 +74,27 @@ function App() {
         }
     }, [email]);
 
+    useEffect(() => {
+        if (!email) {
+            // Need login
+            return;
+        }
+
+        getFavoriteMovies()
+            .then((movies) => {
+                console.log(`Get favorite movies: ${JSON.stringify(movies)}`);
+                setFavoriteMovies(movies);
+            })
+            .catch((error) => {
+                if (error.statusCode === StatusCodes.BAD_REQUEST) {
+                    setErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
+                } else if (error.statusCode === StatusCodes.INTERNAL_SERVER_ERROR) {
+                    setErrorMessage(INTERNAL_SERVER_ERROR_MESSAGE);
+                } else {
+                    setErrorMessage(GET_FAVORITE_MOVIES_ERROR_MESSAGE);
+                }
+            });
+    }, [email, setFavoriteMovies]);
 
     const handleAlertMessageCloseClick = useCallback(() => {
         setErrorMessage(NO_ERROR);
@@ -186,6 +209,44 @@ function App() {
         setIsProfileEditMode(true);
     }, []);
 
+    const handleErrorMessage = useCallback((errorMessage) => {
+        setErrorMessage(errorMessage);
+    }, []);
+
+    const handleAddMovieToFavorite = useCallback((movie) => {
+        postFavoriteMovie(movie)
+            .then((body) => {
+                // TODO (remove from favorites)
+                console.log(`postFavoriteMovie() result body: ${body}`);
+            })
+            .catch((error) => {
+                if (error.statusCode === StatusCodes.BAD_REQUEST) {
+                    setErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
+                } else if (error.statusCode === StatusCodes.INTERNAL_SERVER_ERROR) {
+                    setErrorMessage(INTERNAL_SERVER_ERROR_MESSAGE);
+                } else {
+                    setErrorMessage(ADD_MOVIE_TO_FAVORITES_ERROR_MESSAGE);
+                }
+            });
+    }, [addToFavorite]);
+
+    const handleRemoveMovieFromFavorite = useCallback((movieId) => {
+        deleteFavoriteMovie({movieId})
+            .then((body) => {
+                // TODO (update favorites)
+                console.log(`deleteFavoriteMovie() result body: ${body}`);
+            })
+            .catch((error) => {
+                if (error.statusCode === StatusCodes.BAD_REQUEST) {
+                    setErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
+                } else if (error.statusCode === StatusCodes.INTERNAL_SERVER_ERROR) {
+                    setErrorMessage(INTERNAL_SERVER_ERROR_MESSAGE);
+                } else {
+                    setErrorMessage(REMOVE_MOVIE_FROM_FAVORITES_ERROR_MESSAGE);
+                }
+            });
+    }, [removeFromFavorite]);
+
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <div className='app'>
@@ -197,14 +258,16 @@ function App() {
                     <Route path='/movies'
                            element={
                                <ProtectedRoute needRedirect={!email}>
-                                   <Movies/>
+                                   <Movies handleAddMovieToFavorite={handleAddMovieToFavorite}
+                                           handleRemoveMovieFromFavorite={handleRemoveMovieFromFavorite}
+                                           onErrorMessage={handleErrorMessage}/>
                                </ProtectedRoute>
                            }
                     />
                     <Route path='/saved-movies'
                            element={
                                <ProtectedRoute needRedirect={!email}>
-                                   <SavedMovies/>
+                                   <SavedMovies handleRemoveMovieFromFavorite={handleRemoveMovieFromFavorite}/>
                                </ProtectedRoute>
                            }
                     />

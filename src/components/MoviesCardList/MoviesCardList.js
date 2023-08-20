@@ -9,14 +9,12 @@ function MoviesCardList({moviesList, isFavoriteCardsList, onCardClick, onActionC
             <h2 className='movies-card-list__header'>{/* HIDDEN */}Список найденных фильмов</h2>
             <ol className='movies-card-list__container'>
                 {
-                    moviesList.map((card) => (
-                        <li className='movies-card-list__item' key={card.id}>
+                    moviesList.map((movie) => (
+                        <li className='movies-card-list__item' key={movie.movieId}>
                             <MoviesCard
-                                name={card.name}
-                                duration={card.duration}
-                                imgUrl={card.imgUrl}
+                                movie={movie}
                                 isFavoriteListItem={isFavoriteCardsList}
-                                isSavedCard={card.isSavedCard}
+                                isSavedCard={movie.isSavedCard}
                                 onCardClick={onCardClick}
                                 onActionClick={onActionClick}
                             />

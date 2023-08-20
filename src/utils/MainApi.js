@@ -51,7 +51,7 @@ async function updateUser({ email, name }) {
 }
 
 async function getFavoriteMovies() {
-    return _doRequest('', `${BASE_URL}/movies/`);
+    return _doRequest('GET', `${BASE_URL}/movies/`);
 }
 
 /**
@@ -72,11 +72,11 @@ async function getFavoriteMovies() {
  * @returns {Promise<Response>}
  */
 async function postFavoriteMovie(movie) {
-    return _doRequest('', `${BASE_URL}/movies/`, movie);
+    return _doRequest('POST', `${BASE_URL}/movies/`, movie);
 }
 
 async function deleteFavoriteMovie({ movieId }) {
-    return _doRequest('', `${BASE_URL}/movies/${movieId}`);
+    return _doRequest('DELETE', `${BASE_URL}/movies/${movieId}`);
 }
 
 export {signup, signin, signout, getUser, updateUser, getFavoriteMovies, postFavoriteMovie, deleteFavoriteMovie};

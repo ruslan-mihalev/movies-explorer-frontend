@@ -4,22 +4,18 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import SearchField from '../SearchFieldset/SearchFieldset';
 
 function SearchPanel({
-                         onSearchQuerySubmit,
+                         searchQuery,
+                         onSearchQueryChange,
+                         onSearchSubmit,
                          isShortFilmSwitchedOn,
                          onShortFilmSwitchStateChange,
                          disabled
                      }) {
 
-    const [searchQuery, setSearchQuery] = useState('');
-
     const submitFormHandler = useCallback((e) => {
         e.preventDefault();
-        onSearchQuerySubmit(searchQuery);
-    }, [searchQuery, onSearchQuerySubmit]);
-
-    const searchQueryTextChangeHandler = useCallback((text) => {
-        setSearchQuery(text);
-    }, []);
+        onSearchSubmit();
+    }, [searchQuery, onSearchSubmit]);
 
     return (
         <section className="search-panel">
@@ -27,7 +23,7 @@ function SearchPanel({
             <form className='search-panel__form' name='search-form' onSubmit={submitFormHandler} noValidate={true}>
                 <SearchField
                     queryText={searchQuery}
-                    onQueryTextChange={searchQueryTextChangeHandler}
+                    onQueryTextChange={onSearchQueryChange}
                     disabled={disabled}
                 />
                 <FilterCheckbox
