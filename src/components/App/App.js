@@ -29,11 +29,9 @@ import {
     signout,
     updateUser,
     getUser,
-    deleteFavoriteMovie,
-    postFavoriteMovie,
-    getFavoriteMovies
-} from "../../utils/MainApi";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+} from '../../utils/MainApi';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+
 
 function App() {
 
@@ -42,14 +40,10 @@ function App() {
 
     const [email, setEmail] = useState(localStorage.getItem(KEY_EMAIL));
     const [currentUser, setCurrentUser] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isProfileLoading, setIsProfileLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(NO_ERROR);
     const [inlineErrorMessage, setInlineErrorMessage] = useState(NO_ERROR);
     const [isProfileEditMode, setIsProfileEditMode] = useState(false);
-    const [moviesList, setMoviesList] = useState([]);
-    const [savedMoviesList, setSavedMoviesList] = useState([]);
-    const [isShortFilmSwitchedOn, setShortFilmSwitchedOn] = useState(false);
-    const [isShortFilmSwitchedOnForSavedMovies, setShortFilmSwitchedOnForSavedMovies] = useState(false);
 
     const navigate = useNavigate();
 
@@ -78,102 +72,19 @@ function App() {
         }
     }, [email]);
 
-    // Request Saved Movies
-    useEffect(() => {
-    }, []);
-
-    // Request all movies
-    useEffect(() => {
-    }, []);
-
-    useEffect(() => {
-        setMoviesList([
-            {
-                key: '1',
-                name: 'Побег из Шоушенка',
-                duration: '2ч22м',
-                imgUrl: 'https://avatars.mds.yandex.net/get-kinopoisk-post-img/1539913/e6dd24cbe07ab6ecd0d31dedd58b870f/960x540',
-                isSavedCard: true,
-            },
-            {
-                key: '2',
-                name: 'Остров',
-                duration: '2ч16м',
-                imgUrl: 'https://image.tmdb.org/t/p/original/1NXdkAz2QAcvFo3BmyfEt10IVq5.jpg',
-            },
-            {
-                key: '3',
-                name: 'На игле',
-                duration: '1ч34м',
-                imgUrl: 'https://kino-punk.ru/wp-content/uploads/2021/07/107055.jpg',
-                isSavedCard: true,
-            },
-            {
-                key: '4',
-                name: 'Нефть',
-                duration: '2ч38м',
-                imgUrl: 'https://www.soyuz.ru/public/uploads/files/5/7483436/1005x558_202206192136351d2253ce92.jpg',
-            },
-            {
-                key: '5',
-                name: 'Бойцовский клуб',
-                duration: '2ч19м',
-                imgUrl: 'https://batenka.ru/media/images/fight-club--povy.width-1280.pngquality-80.jpegquality-80.jpg',
-            },
-        ]);
-    }, []);
-
-    useEffect(() => {
-        setSavedMoviesList([
-            {
-                key: '1',
-                name: 'Побег из Шоушенка',
-                duration: '2ч22м',
-                imgUrl: 'https://avatars.mds.yandex.net/get-kinopoisk-post-img/1539913/e6dd24cbe07ab6ecd0d31dedd58b870f/960x540',
-                isSavedCard: true,
-            },
-            {
-                key: '2',
-                name: 'Остров',
-                duration: '2ч16м',
-                imgUrl: 'https://image.tmdb.org/t/p/original/1NXdkAz2QAcvFo3BmyfEt10IVq5.jpg',
-                isSavedCard: true,
-            },
-            {
-                key: '3',
-                name: 'На игле',
-                duration: '1ч34м',
-                imgUrl: 'https://kino-punk.ru/wp-content/uploads/2021/07/107055.jpg',
-                isSavedCard: true,
-            },
-            {
-                key: '4',
-                name: 'Нефть',
-                duration: '2ч38м',
-                imgUrl: 'https://www.soyuz.ru/public/uploads/files/5/7483436/1005x558_202206192136351d2253ce92.jpg',
-                isSavedCard: true,
-            },
-            {
-                key: '5',
-                name: 'Бойцовский клуб',
-                duration: '2ч19м',
-                imgUrl: 'https://batenka.ru/media/images/fight-club--povy.width-1280.pngquality-80.jpegquality-80.jpg',
-                isSavedCard: true,
-            },
-        ]);
-    }, []);
 
     const handleAlertMessageCloseClick = useCallback(() => {
         setErrorMessage(NO_ERROR);
     }, []);
 
     const handleRegister = useCallback((inputs) => {
+        setIsProfileLoading(true);
         signup(inputs)
             .then(() => signin(inputs))
             .then((body) => {
                 localStorage.setItem(KEY_EMAIL, body.email);
                 setEmail(body.email);
-                navigate('/movies', { replace: true })
+                navigate('/movies', {replace: true})
                 setInlineErrorMessage('');
             })
             .catch((error) => {
@@ -188,15 +99,19 @@ function App() {
                 } else {
                     setInlineErrorMessage(USER_REGISTRATION_ERROR_MESSAGE);
                 }
+            })
+            .finally(() => {
+                setIsProfileLoading(false);
             });
     }, []);
 
     const handleLogin = useCallback((inputs) => {
+        setIsProfileLoading(true);
         signin(inputs)
             .then((body) => {
                 localStorage.setItem(KEY_EMAIL, body.email);
                 setEmail(body.email);
-                navigate('/movies', { replace: true })
+                navigate('/movies', {replace: true})
                 setInlineErrorMessage('');
             })
             .catch((error) => {
@@ -211,10 +126,14 @@ function App() {
                 } else {
                     setInlineErrorMessage(USER_AUTHORIZATION_ERROR_MESSAGE);
                 }
+            })
+            .finally(() => {
+                setIsProfileLoading(false);
             });
     }, []);
 
     const handleUpdateProfile = useCallback((inputs) => {
+        setIsProfileLoading(true);
         updateUser(inputs)
             .then((body) => {
                 setCurrentUser(body);
@@ -234,15 +153,19 @@ function App() {
                 } else {
                     setInlineErrorMessage(PROFILE_UPDATE_ERROR_MESSAGE);
                 }
+            })
+            .finally(() => {
+                setIsProfileLoading(false);
             });
     }, []);
 
     const handleSignout = useCallback(() => {
+        setIsProfileLoading(true);
         signout()
             .then((body) => {
                 localStorage.removeItem(KEY_EMAIL);
                 setEmail('');
-                navigate('/', { replace: true });
+                navigate('/', {replace: true});
                 setInlineErrorMessage('');
             })
             .catch((error) => {
@@ -253,31 +176,14 @@ function App() {
                 } else {
                     setErrorMessage(SIGNOUT_ERROR_MESSAGE);
                 }
+            })
+            .finally(() => {
+                setIsProfileLoading(false);
             });
     }, []);
 
-    const handleSearchMoviesQuerySubmit = useCallback((query) => {
-        console.log(`handleSearchMoviesQuerySubmitted() query: ${query}, shortFilms: ${isShortFilmSwitchedOn}`);
-    }, [isShortFilmSwitchedOn]);
-
-    const handleSearchSavedMoviesQuerySubmit = useCallback((query) => {
-        console.log(`handleSearchSavedMoviesQuerySubmitted() query: ${query}, shortFilms: ${isShortFilmSwitchedOnForSavedMovies}`);
-    }, [isShortFilmSwitchedOnForSavedMovies]);
-
-    const handleOnGerMoreMoviesClick = useCallback(() => {
-        console.log(`handleOnGerMoreMoviesClick()`);
-    }, []);
-
-    const handleTurnEditModeOnClick = useCallback(() => {
+    const handleTurnProfileEditModeOnClick = useCallback(() => {
         setIsProfileEditMode(true);
-    }, []);
-
-    const handleCardClick = useCallback(() => {
-        console.log(`handleCardClick()`);
-    }, []);
-
-    const handleActionClick = useCallback((isSavedCard) => {
-        console.log(`handleActionClick() isSavedCard: ${isSavedCard}`);
     }, []);
 
     return (
@@ -291,31 +197,14 @@ function App() {
                     <Route path='/movies'
                            element={
                                <ProtectedRoute needRedirect={!email}>
-                                   <Movies
-                                       isLoading={isLoading}
-                                       moviesList={moviesList}
-                                       onSearchQuerySubmit={handleSearchMoviesQuerySubmit}
-                                       isShortFilmSwitchedOn={isShortFilmSwitchedOn}
-                                       onShortFilmSwitchStateChange={setShortFilmSwitchedOn}
-                                       onGetMoreMoviesClick={handleOnGerMoreMoviesClick}
-                                       onCardClick={handleCardClick}
-                                       onActionClick={handleActionClick}
-                                   />
+                                   <Movies/>
                                </ProtectedRoute>
                            }
                     />
                     <Route path='/saved-movies'
                            element={
                                <ProtectedRoute needRedirect={!email}>
-                                   <SavedMovies
-                                       isLoading={isLoading}
-                                       moviesList={savedMoviesList}
-                                       onSearchQuerySubmit={handleSearchSavedMoviesQuerySubmit}
-                                       isShortFilmSwitchedOn={isShortFilmSwitchedOnForSavedMovies}
-                                       onShortFilmSwitchStateChange={setShortFilmSwitchedOnForSavedMovies}
-                                       onCardClick={handleCardClick}
-                                       onActionClick={handleActionClick}
-                                   />
+                                   <SavedMovies/>
                                </ProtectedRoute>
                            }
                     />
@@ -323,12 +212,12 @@ function App() {
                            element={
                                <ProtectedRoute needRedirect={!email}>
                                    <Profile
-                                       isLoading={isLoading}
+                                       isLoading={isProfileLoading}
                                        serverError={inlineErrorMessage}
                                        isEditMode={isProfileEditMode}
                                        onUpdateProfile={handleUpdateProfile}
                                        onSignOutClick={handleSignout}
-                                       onTurnEditModeOnClick={handleTurnEditModeOnClick}
+                                       onTurnEditModeOnClick={handleTurnProfileEditModeOnClick}
                                    />
                                </ProtectedRoute>
                            }
@@ -336,7 +225,7 @@ function App() {
                     <Route path='/signin'
                            element={
                                <Login
-                                   isLoading={isLoading}
+                                   isLoading={isProfileLoading}
                                    serverError={inlineErrorMessage}
                                    onLogin={handleLogin}
                                />
@@ -345,7 +234,7 @@ function App() {
                     <Route path='/signup'
                            element={
                                <Register
-                                   isLoading={isLoading}
+                                   isLoading={isProfileLoading}
                                    serverError={inlineErrorMessage}
                                    onRegister={handleRegister}
                                />

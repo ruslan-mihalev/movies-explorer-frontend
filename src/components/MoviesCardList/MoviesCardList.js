@@ -10,7 +10,7 @@ function MoviesCardList({moviesList, isFavoriteCardsList, onCardClick, onActionC
             <ol className='movies-card-list__container'>
                 {
                     moviesList.map((card) => (
-                        <li className='movies-card-list__item' key={card.key}>
+                        <li className='movies-card-list__item' key={card.id}>
                             <MoviesCard
                                 name={card.name}
                                 duration={card.duration}

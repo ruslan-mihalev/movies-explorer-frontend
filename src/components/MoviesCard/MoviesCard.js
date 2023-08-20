@@ -23,6 +23,10 @@ function MoviesCard({name, duration, imgUrl, isFavoriteListItem, isSavedCard = f
     const actionModifier = createActionButtonModifier(isFavoriteListItem, isSavedCard);
     const actionClass = `movies-card__action ${actionModifier}`;
 
+    const durationHours = ~~(duration / 60);
+    const durationMinutes = duration % 60;
+    const durationText = (durationHours ? `${durationHours}ч` : '') + (durationMinutes ? `${durationMinutes}м` : '');
+
     const handleActionClickHandler = useCallback(() => {
         onActionClick(isSavedCard);
     }, [onActionClick]);
@@ -37,7 +41,7 @@ function MoviesCard({name, duration, imgUrl, isFavoriteListItem, isSavedCard = f
                     <h3 className='movies-card__name'>{name}</h3>
                     <button className={actionClass} onClick={handleActionClickHandler}/>
                 </div>
-                <p className='movies-card__duration'>{duration}</p>
+                <p className='movies-card__duration'>{durationText}</p>
             </div>
         </article>
     );
