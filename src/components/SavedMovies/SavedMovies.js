@@ -26,7 +26,7 @@ function SavedMovies({handleRemoveMovieFromFavorite}) {
     const {favoriteMovies} = useFavoriteMovies();
 
     useEffect(() => {
-        console.log(`favoriteMovies.length: ${favoriteMovies.length}`);
+        console.log(`>>> favoriteMovies.length: ${favoriteMovies.length}`);
         if (favoriteMovies.length) {
             const filteredMovies = filterMovies(favoriteMovies, submittedSearchQuery, isShortFilmSwitchedOn);
             setSearchMoviesError(filteredMovies.length ? NO_ERROR : EMPTY_RESULT_ERROR);
@@ -52,7 +52,7 @@ function SavedMovies({handleRemoveMovieFromFavorite}) {
 
     const handleActionClick = useCallback((movie, isSavedCard) => {
         console.log(`handleActionClick() isSavedCard: ${isSavedCard}, movie: ${JSON.stringify(movie)}`);
-        handleRemoveMovieFromFavorite(movie.movieId);
+        handleRemoveMovieFromFavorite(movie);
     }, []);
 
     return (

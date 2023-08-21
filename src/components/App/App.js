@@ -35,7 +35,7 @@ import {
 } from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import {useFavoriteMovies} from '../../contexts/FavoriteMoviesContext';
-import {KEY_EMAIL} from '../../utils/constants';
+import {KEY_EMAIL, KEY_FILTERED_MOVIES, KEY_SEARCH_QUERY, KEY_SHORT_MOVIES_ONLY} from '../../utils/constants';
 import {convertMovie} from '../../utils/MoviesUtils';
 
 function App() {
@@ -188,6 +188,9 @@ function App() {
         signout()
             .then((body) => {
                 localStorage.removeItem(KEY_EMAIL);
+                localStorage.removeItem(KEY_SEARCH_QUERY);
+                localStorage.removeItem(KEY_SHORT_MOVIES_ONLY);
+                localStorage.removeItem(KEY_FILTERED_MOVIES);
                 setEmail('');
                 navigate('/', {replace: true});
                 setInlineErrorMessage('');
@@ -215,14 +218,16 @@ function App() {
     }, []);
 
     const handleAddMovieToFavorite = useCallback((movie) => {
-        postFavoriteMovie(movie)
+        const { _id, ...postMovie } = movie;
+        postFavoriteMovie(postMovie)
             .then((movieFromResponse) => {
                 console.log(`postFavoriteMovie() result body: ${JSON.stringify(movieFromResponse)}`);
                 if (movieFromResponse) {
-                    addToFavorite(convertMovie(movieFromResponse));
+                    addToFavorite(movieFromResponse);
                 }
             })
             .catch((error) => {
+                console.log(`postFavoriteMovie() error: ${error}`);
                 if (error.statusCode === StatusCodes.BAD_REQUEST) {
                     setErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
                 } else if (error.statusCode === StatusCodes.INTERNAL_SERVER_ERROR) {
@@ -233,11 +238,13 @@ function App() {
             });
     }, [addToFavorite]);
 
-    const handleRemoveMovieFromFavorite = useCallback((movieId) => {
-        deleteFavoriteMovie({movieId})
-            .then((body) => {
-                console.log(`deleteFavoriteMovie() result body: ${JSON.stringify(body)}`);
-                // TODO (update favorites)
+    const handleRemoveMovieFromFavorite = useCallback((movie) => {
+        deleteFavoriteMovie({_id: movie._id})
+            .then((movieFromResponse) => {
+                console.log(`deleteFavoriteMovie() result body: ${JSON.stringify(movieFromResponse)}`);
+                if (movieFromResponse) {
+                    removeFromFavorite(movieFromResponse);
+                }
             })
             .catch((error) => {
                 if (error.statusCode === StatusCodes.BAD_REQUEST) {

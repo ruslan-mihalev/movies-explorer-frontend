@@ -1,6 +1,7 @@
 import {getFullImageUrl} from './MoviesApi';
 
 const convertMovie = ({
+                          _id = null,
                           id,
                           nameRU = '',
                           nameEN = '',
@@ -13,6 +14,7 @@ const convertMovie = ({
                           director,
                       }) => {
     return {
+        _id: _id,
         movieId: id,
         nameRU,
         nameEN,
@@ -25,6 +27,13 @@ const convertMovie = ({
         country,
         director,
     }
+};
+
+const zipMovies = (movies, favoriteMovies) => {
+    return movies.map(movie => ({
+        ...movie,
+        _id: favoriteMovies.find(favoriteMovie => favoriteMovie.movieId === movie.movieId)?._id,
+    }));
 };
 
 const checkByWords = (term, queryWords) => {
@@ -42,14 +51,10 @@ const filterMovies = (movies, searchQuery, shortMoviesOnly) => {
     // Фильтруем по вхождению слов из поискового запроса в основные тестовые блоки описания фильма
     return prefilteredMovies
         .filter((movie) => {
-            return checkByWords(movie.nameRU.toLowerCase(), queryWords)
-                || checkByWords(movie.nameEN.toLowerCase(), queryWords);
-                // || checkByWords(movie.description.toLowerCase(), queryWords)
-                // || checkByWords(movie.director.toLowerCase(), queryWords)
-                // || checkByWords(movie.country.toLowerCase(), queryWords)
-                // || checkByWords(movie.year, queryWords);
-        }
-    );
+                return checkByWords(movie.nameRU.toLowerCase(), queryWords)
+                    || checkByWords(movie.nameEN.toLowerCase(), queryWords);
+            }
+        );
 };
 
-export {convertMovie, filterMovies};
+export {convertMovie, filterMovies, zipMovies};

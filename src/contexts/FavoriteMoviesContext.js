@@ -18,12 +18,12 @@ export const FavoriteMoviesContextProvider = ({children}) => {
     const [favoriteMovies, setFavoriteMovies] = useState([]);
 
     const addToFavorite = useCallback((movie) => {
-        // TODO
-    }, []);
+        setFavoriteMovies((prev) => [...prev, movie]);
+    }, [favoriteMovies]);
 
-    const removeFromFavorite = useCallback((movieId) => {
-        // TODO
-    }, []);
+    const removeFromFavorite = useCallback((movie) => {
+        setFavoriteMovies(prev => prev.filter(favoriteMovie => favoriteMovie.movieId !== movie.movieId));
+    }, [favoriteMovies]);
 
     return (
         <FavoriteMoviesContext.Provider value={{
