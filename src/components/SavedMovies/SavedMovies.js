@@ -27,7 +27,8 @@ function SavedMovies({handleRemoveMovieFromFavorite}) {
 
     useEffect(() => {
         //console.log(`>>> favoriteMovies.length: ${favoriteMovies.length}`);
-        if (favoriteMovies.length) {
+        //console.log(`>>> favoriteMovies: ${JSON.stringify(favoriteMovies)}`);
+        if (favoriteMovies) {
             const filteredMovies = filterMovies(favoriteMovies, submittedSearchQuery, isShortFilmSwitchedOn);
             setSearchMoviesError(filteredMovies.length ? NO_ERROR : EMPTY_RESULT_ERROR);
             setFilteredMoviesList(filteredMovies);

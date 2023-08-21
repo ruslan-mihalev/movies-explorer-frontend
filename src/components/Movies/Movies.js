@@ -80,13 +80,12 @@ function Movies({handleAddMovieToFavorite, handleRemoveMovieFromFavorite, onErro
         //console.log(`>>> searchQuery: ${searchQuery}`);
         if (moviesList.length) {
             const filteredMovies = filterMovies(moviesList, submittedSearchQuery, isShortFilmSwitchedOn);
-            const extendedFilteredMovies = zipMovies(filteredMovies, favoriteMovies);
-            setSearchMoviesError(extendedFilteredMovies.length ? NO_ERROR : EMPTY_RESULT_ERROR);
-            setFilteredMoviesList(extendedFilteredMovies);
+            setSearchMoviesError(filteredMovies.length ? NO_ERROR : EMPTY_RESULT_ERROR);
+            setFilteredMoviesList(filteredMovies);
 
             localStorage.setItem(KEY_SEARCH_QUERY, searchQuery);
             localStorage.setItem(KEY_SHORT_MOVIES_ONLY, JSON.stringify(isShortFilmSwitchedOn));
-            localStorage.setItem(KEY_FILTERED_MOVIES, JSON.stringify(extendedFilteredMovies));
+            localStorage.setItem(KEY_FILTERED_MOVIES, JSON.stringify(filteredMovies));
         }
     }, [submittedSearchQuery, isShortFilmSwitchedOn, moviesList, favoriteMovies]);
 
@@ -138,7 +137,7 @@ function Movies({handleAddMovieToFavorite, handleRemoveMovieFromFavorite, onErro
                 (isMoviesLoading || searchMoviesError)
                     ? (<LoadingStatus errorMessage={searchMoviesError}/>)
                     : (<MoviesCardList
-                        moviesList={filteredMoviesList.slice(0, moviesLimit)}
+                        moviesList={zipMovies(filteredMoviesList, favoriteMovies).slice(0, moviesLimit)}
                         onCardClick={handleCardClick}
                         onActionClick={handleActionClick}
                     />)
