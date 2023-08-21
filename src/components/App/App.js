@@ -36,6 +36,7 @@ import {
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import {useFavoriteMovies} from '../../contexts/FavoriteMoviesContext';
 import {KEY_EMAIL} from '../../utils/constants';
+import {convertMovie} from '../../utils/MoviesUtils';
 
 function App() {
 
@@ -215,9 +216,11 @@ function App() {
 
     const handleAddMovieToFavorite = useCallback((movie) => {
         postFavoriteMovie(movie)
-            .then((body) => {
-                // TODO (remove from favorites)
-                console.log(`postFavoriteMovie() result body: ${body}`);
+            .then((movieFromResponse) => {
+                console.log(`postFavoriteMovie() result body: ${JSON.stringify(movieFromResponse)}`);
+                if (movieFromResponse) {
+                    addToFavorite(convertMovie(movieFromResponse));
+                }
             })
             .catch((error) => {
                 if (error.statusCode === StatusCodes.BAD_REQUEST) {
@@ -233,8 +236,8 @@ function App() {
     const handleRemoveMovieFromFavorite = useCallback((movieId) => {
         deleteFavoriteMovie({movieId})
             .then((body) => {
+                console.log(`deleteFavoriteMovie() result body: ${JSON.stringify(body)}`);
                 // TODO (update favorites)
-                console.log(`deleteFavoriteMovie() result body: ${body}`);
             })
             .catch((error) => {
                 if (error.statusCode === StatusCodes.BAD_REQUEST) {
