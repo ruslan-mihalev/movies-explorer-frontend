@@ -34,7 +34,7 @@ function Movies({handleAddMovieToFavorite, handleRemoveMovieFromFavorite, onErro
     const {favoriteMovies} = useFavoriteMovies();
 
     const requestMovies = () => {
-        console.log(`requestMovies()`);
+        //console.log(`requestMovies()`);
         setIsMoviesLoading(true);
         getMovies()
             .then((movies) => {
@@ -67,17 +67,17 @@ function Movies({handleAddMovieToFavorite, handleRemoveMovieFromFavorite, onErro
     }, []);
 
     useEffect(() => {
-        console.log(`useEffect() searchQuery: ${submittedSearchQuery}`);
-        console.log(`useEffect() moviesList.length: ${moviesList.length}`);
+        //console.log(`useEffect() searchQuery: ${submittedSearchQuery}`);
+        //console.log(`useEffect() moviesList.length: ${moviesList.length}`);
         if (submittedSearchQuery && !moviesList.length) {
             requestMovies();
         }
     }, [submittedSearchQuery, moviesList.length]);
 
     useEffect(() => {
-        console.log(`>>> favoriteMovies.length: ${favoriteMovies.length}`);
-        console.log(`>>> isShortFilmSwitchedOn: ${isShortFilmSwitchedOn}`);
-        console.log(`>>> searchQuery: ${searchQuery}`);
+        //console.log(`>>> favoriteMovies.length: ${favoriteMovies.length}`);
+        //console.log(`>>> isShortFilmSwitchedOn: ${isShortFilmSwitchedOn}`);
+        //console.log(`>>> searchQuery: ${searchQuery}`);
         if (moviesList.length) {
             const filteredMovies = filterMovies(moviesList, submittedSearchQuery, isShortFilmSwitchedOn);
             const extendedFilteredMovies = zipMovies(filteredMovies, favoriteMovies);
@@ -91,7 +91,7 @@ function Movies({handleAddMovieToFavorite, handleRemoveMovieFromFavorite, onErro
     }, [submittedSearchQuery, isShortFilmSwitchedOn, moviesList, favoriteMovies]);
 
     const handleSearchSubmit = useCallback(() => {
-        console.log(`handleSearchSubmit() query: ${searchQuery}`);
+        //console.log(`handleSearchSubmit() query: ${searchQuery}`);
         setSearchQuery((prev) => prev.trim());
         if (searchQuery) {
             setSubmittedSearchQuery(searchQuery);
@@ -102,17 +102,17 @@ function Movies({handleAddMovieToFavorite, handleRemoveMovieFromFavorite, onErro
     }, [searchQuery]);
 
     const handleOnGetMoreMoviesClick = useCallback(() => {
-        console.log(`handleOnGetMoreMoviesClick()`);
+        //console.log(`handleOnGetMoreMoviesClick()`);
         setPageNumber((prevPageNumber) => prevPageNumber + 1);
     }, []);
 
     const handleCardClick = useCallback((movie) => {
-        console.log(`handleCardClick() movie: ${JSON.stringify(movie)}`);
+        //console.log(`handleCardClick() movie: ${JSON.stringify(movie)}`);
         window.open(movie.trailerLink, '_blank');
     }, []);
 
     const handleActionClick = useCallback((movie, isSavedCard) => {
-        console.log(`handleActionClick() isSavedCard: ${isSavedCard}, movie: ${JSON.stringify(movie)}`);
+        //console.log(`handleActionClick() isSavedCard: ${isSavedCard}, movie: ${JSON.stringify(movie)}`);
         if (isSavedCard) {
             handleRemoveMovieFromFavorite(movie);
         } else {

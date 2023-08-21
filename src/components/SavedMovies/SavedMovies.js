@@ -26,7 +26,7 @@ function SavedMovies({handleRemoveMovieFromFavorite}) {
     const {favoriteMovies} = useFavoriteMovies();
 
     useEffect(() => {
-        console.log(`>>> favoriteMovies.length: ${favoriteMovies.length}`);
+        //console.log(`>>> favoriteMovies.length: ${favoriteMovies.length}`);
         if (favoriteMovies.length) {
             const filteredMovies = filterMovies(favoriteMovies, submittedSearchQuery, isShortFilmSwitchedOn);
             setSearchMoviesError(filteredMovies.length ? NO_ERROR : EMPTY_RESULT_ERROR);
@@ -35,7 +35,7 @@ function SavedMovies({handleRemoveMovieFromFavorite}) {
     }, [submittedSearchQuery, isShortFilmSwitchedOn, favoriteMovies]);
 
     const handleSearchSubmit = useCallback(() => {
-        console.log(`handleSearchSubmit() query: ${searchQuery}`);
+        //console.log(`handleSearchSubmit() query: ${searchQuery}`);
         setSearchQuery((prev) => prev.trim());
 
         if (searchQuery) {
@@ -46,12 +46,12 @@ function SavedMovies({handleRemoveMovieFromFavorite}) {
     }, [searchQuery]);
 
     const handleCardClick = useCallback((movie) => {
-        console.log(`handleCardClick() movie: ${JSON.stringify(movie)}`);
+        //console.log(`handleCardClick() movie: ${JSON.stringify(movie)}`);
         window.open(movie.trailerLink, '_blank');
     }, []);
 
     const handleActionClick = useCallback((movie, isSavedCard) => {
-        console.log(`handleActionClick() isSavedCard: ${isSavedCard}, movie: ${JSON.stringify(movie)}`);
+        //console.log(`handleActionClick() isSavedCard: ${isSavedCard}, movie: ${JSON.stringify(movie)}`);
         handleRemoveMovieFromFavorite(movie);
     }, []);
 

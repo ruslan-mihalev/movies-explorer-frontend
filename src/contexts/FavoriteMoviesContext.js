@@ -39,6 +39,5 @@ export const FavoriteMoviesContextProvider = ({children}) => {
 
 
 export function useFavoriteMovies() {
-    console.log(`useFavoriteMovies()`);
     return useContext(FavoriteMoviesContext);
 }

@@ -83,7 +83,7 @@ function App() {
 
         getFavoriteMovies()
             .then((movies) => {
-                console.log(`Get favorite movies: ${JSON.stringify(movies)}`);
+                //console.log(`Get favorite movies: ${JSON.stringify(movies)}`);
                 setFavoriteMovies(movies);
             })
             .catch((error) => {
@@ -221,13 +221,13 @@ function App() {
         const { _id, ...postMovie } = movie;
         postFavoriteMovie(postMovie)
             .then((movieFromResponse) => {
-                console.log(`postFavoriteMovie() result body: ${JSON.stringify(movieFromResponse)}`);
+                //console.log(`postFavoriteMovie() result body: ${JSON.stringify(movieFromResponse)}`);
                 if (movieFromResponse) {
                     addToFavorite(movieFromResponse);
                 }
             })
             .catch((error) => {
-                console.log(`postFavoriteMovie() error: ${error}`);
+                //console.log(`postFavoriteMovie() error: ${error}`);
                 if (error.statusCode === StatusCodes.BAD_REQUEST) {
                     setErrorMessage(BAD_REQUEST_ERROR_MESSAGE);
                 } else if (error.statusCode === StatusCodes.INTERNAL_SERVER_ERROR) {
@@ -241,7 +241,7 @@ function App() {
     const handleRemoveMovieFromFavorite = useCallback((movie) => {
         deleteFavoriteMovie({_id: movie._id})
             .then((movieFromResponse) => {
-                console.log(`deleteFavoriteMovie() result body: ${JSON.stringify(movieFromResponse)}`);
+                //console.log(`deleteFavoriteMovie() result body: ${JSON.stringify(movieFromResponse)}`);
                 if (movieFromResponse) {
                     removeFromFavorite(movieFromResponse);
                 }
