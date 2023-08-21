@@ -17,7 +17,6 @@ import {useFavoriteMovies} from '../../contexts/FavoriteMoviesContext';
 
 function SavedMovies({handleRemoveMovieFromFavorite}) {
 
-    const [isLoading, setIsLoading] = useState(false);
     const [filteredMoviesList, setFilteredMoviesList] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [submittedSearchQuery, setSubmittedSearchQuery] = useState('');
@@ -51,7 +50,7 @@ function SavedMovies({handleRemoveMovieFromFavorite}) {
         window.open(movie.trailerLink, '_blank');
     }, []);
 
-    const handleActionClick = useCallback((movie, isSavedCard) => {
+    const handleActionClick = useCallback((movie) => {
         //console.log(`handleActionClick() isSavedCard: ${isSavedCard}, movie: ${JSON.stringify(movie)}`);
         handleRemoveMovieFromFavorite(movie);
     }, []);
@@ -66,10 +65,9 @@ function SavedMovies({handleRemoveMovieFromFavorite}) {
                 onSearchSubmit={handleSearchSubmit}
                 isShortFilmSwitchedOn={isShortFilmSwitchedOn}
                 onShortFilmSwitchStateChange={setShortFilmSwitchedOn}
-                disabled={isLoading}
             />
             {
-                (isLoading || searchMoviesError)
+                (searchMoviesError)
                     ? (<LoadingStatus errorMessage={searchMoviesError}/>)
                     : (<MoviesCardList
                         moviesList={filteredMoviesList}
