@@ -6,15 +6,15 @@ import Summary from '../Summary/Summary';
 import SectionTitle from '../SectionTitle/SectionTitle';
 
 function AboutMe() {
-    return (
-        <section className='about-me' id='about-me'>
-            <SectionTitle className='about-me__title'>
-                Студент
-            </SectionTitle>
-            <Summary className='about-me__summary'/>
-            <Portfolio className='about-me__portfolio'/>
-        </section>
-    );
+  return (
+    <section className='about-me' id='about-me'>
+      <SectionTitle className='about-me__title'>
+        Студент
+      </SectionTitle>
+      <Summary className='about-me__summary'/>
+      <Portfolio className='about-me__portfolio'/>
+    </section>
+  );
 }
 
 export default AboutMe;

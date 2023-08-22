@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 
 import './SavedMovies.css';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
@@ -7,65 +7,75 @@ import Footer from '../Footer/Footer';
 import MoviesDivider from '../MoviesDivider/MoviesDivider';
 import SearchPanel from '../SearchPanel/SearchPanel';
 import LoadingStatus from '../LoadingStatus/LoadingStatus';
+import {
+  EMPTY_QUERY_ERROR,
+  EMPTY_RESULT_ERROR,
+  NO_ERROR
+} from '../../utils/errorMessages';
+import {filterMovies} from '../../utils/MoviesUtils';
+import {useFavoriteMovies} from '../../contexts/FavoriteMoviesContext';
 
-function SavedMovies() {
+function SavedMovies({handleRemoveMovieFromFavorite}) {
 
-    const [isLoading] = useState(false);
-    const moviesList = [
-        {
-            key: '1',
-            name: 'Побег из Шоушенка',
-            duration: '2ч22м',
-            imgUrl: 'https://avatars.mds.yandex.net/get-kinopoisk-post-img/1539913/e6dd24cbe07ab6ecd0d31dedd58b870f/960x540',
-            actionType: 'remove',
-        },
-        {
-            key: '2',
-            name: 'Остров',
-            duration: '2ч16м',
-            imgUrl: 'https://image.tmdb.org/t/p/original/1NXdkAz2QAcvFo3BmyfEt10IVq5.jpg',
-            actionType: 'remove',
-        },
-        {
-            key: '3',
-            name: 'На игле',
-            duration: '1ч34м',
-            imgUrl: 'https://kino-punk.ru/wp-content/uploads/2021/07/107055.jpg',
-            actionType: 'remove',
-        },
-        {
-            key: '4',
-            name: 'Нефть',
-            duration: '2ч38м',
-            imgUrl: 'https://www.soyuz.ru/public/uploads/files/5/7483436/1005x558_202206192136351d2253ce92.jpg',
-            actionType: 'remove',
-        },
-        {
-            key: '5',
-            name: 'Бойцовский клуб',
-            duration: '2ч19м',
-            imgUrl: 'https://batenka.ru/media/images/fight-club--povy.width-1280.pngquality-80.jpegquality-80.jpg',
-            actionType: 'remove',
-        },
-    ];
+  const [filteredMoviesList, setFilteredMoviesList] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [submittedSearchQuery, setSubmittedSearchQuery] = useState('');
+  const [isShortFilmSwitchedOn, setShortFilmSwitchedOn] = useState(false);
+  const [searchMoviesError, setSearchMoviesError] = useState(NO_ERROR);
+  const {favoriteMovies} = useFavoriteMovies();
 
-    return (
-        <main className='saved-movies'>
-            <Header isAuthorized={true} />
-            <h1 className='saved-movies__header'>{/* HIDDEN */}Сохраненные фильмы</h1>
-            <SearchPanel onSearchClicked={() => {}}/>
-            {
-                isLoading
-                    ? (<LoadingStatus/>)
-                    : (<MoviesCardList
-                        moviesList={moviesList}
-                    />)
-            }
+  useEffect(() => {
+    if (favoriteMovies) {
+      const filteredMovies = filterMovies(favoriteMovies, submittedSearchQuery, isShortFilmSwitchedOn);
+      setSearchMoviesError(filteredMovies.length ? NO_ERROR : EMPTY_RESULT_ERROR);
+      setFilteredMoviesList(filteredMovies);
+    }
+  }, [submittedSearchQuery, isShortFilmSwitchedOn, favoriteMovies]);
 
-            <MoviesDivider/>
-            <Footer/>
-        </main>
-    );
+  const handleSearchSubmit = useCallback(() => {
+    setSearchQuery((prev) => prev.trim());
+
+    if (searchQuery) {
+      setSubmittedSearchQuery(searchQuery);
+    } else {
+      setSearchMoviesError(EMPTY_QUERY_ERROR);
+    }
+  }, [searchQuery]);
+
+  const handleCardClick = useCallback((movie) => {
+    window.open(movie.trailerLink, '_blank');
+  }, []);
+
+  const handleActionClick = useCallback((movie) => {
+    handleRemoveMovieFromFavorite(movie);
+  }, [handleRemoveMovieFromFavorite]);
+
+  return (
+    <main className='saved-movies'>
+      <Header/>
+      <h1 className='saved-movies__header'>{/* HIDDEN */}Сохраненные фильмы</h1>
+      <SearchPanel
+        searchQuery={searchQuery}
+        onSearchQueryChange={setSearchQuery}
+        onSearchSubmit={handleSearchSubmit}
+        isShortFilmSwitchedOn={isShortFilmSwitchedOn}
+        onShortFilmSwitchStateChange={setShortFilmSwitchedOn}
+      />
+      {
+        (searchMoviesError)
+          ? (<LoadingStatus errorMessage={searchMoviesError}/>)
+          : (<MoviesCardList
+            moviesList={filteredMoviesList}
+            isFavoriteCardsList={true}
+            onCardClick={handleCardClick}
+            onActionClick={handleActionClick}
+          />)
+      }
+
+      <MoviesDivider/>
+      <Footer/>
+    </main>
+  );
 }
 
 export default SavedMovies;

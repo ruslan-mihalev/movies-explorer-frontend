@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useContext, useEffect} from 'react';
 
 import './Profile.css';
 import Header from '../Header/Header';
@@ -7,76 +7,105 @@ import AccountTitle from '../AccountTitle/AccountTitle';
 import StaticField from '../StaticField/StaticField';
 import SubmitButton from '../SubmitButton/SubmitButton';
 import InputField from '../InputField/InputField';
+import {CurrentUserContext} from '../../contexts/CurrentUserContext';
+import {useFormWithValidation} from "../../utils/hooks/useFormWithValidation";
 
-function Profile({name}) {
+function Profile({isLoading, serverError, isEditMode, onUpdateProfile, onTurnEditModeOnClick, onSignOutClick}) {
 
-    const [isModeEdit, setIsModeEdit] = useState(false);
-    const [profileUpdateError] = useState('При обновлении профиля произошла ошибка.');
+  const currentUser = useContext(CurrentUserContext);
 
-    const handleProfileChangesSubmit = useCallback(() => {
-        // Временная реализация
-        setIsModeEdit(false);
-    }, []);
+  const {values, errors, setValues, handleChange, isFormValid} = useFormWithValidation({
+    name: currentUser?.name,
+    email: currentUser?.email
+  });
 
-    const handleEditProfileClick = useCallback(() => {
-        // Временная реализация
-        setIsModeEdit(true);
-    }, []);
+  useEffect(() => {
+    if (currentUser?.name && currentUser?.email) {
+      setValues({
+        name: currentUser?.name,
+        email: currentUser?.email
+      });
+    }
+  }, [setValues, currentUser?.name, currentUser?.email]);
 
-    const handleLogOutClick = useCallback(() => {
-        // Временная реализация
-    }, []);
+  const handleProfileChangesSubmit = useCallback((e) => {
+    e.preventDefault();
+    onUpdateProfile({...values, email: values.email.trim().toLowerCase()})
+  }, [onUpdateProfile, values.name, values.email]);
 
-    return (
-        <main className='profile'>
-            <Header isAuthorized={true}/>
-            <section className='profile__content'>
-                {isModeEdit ? (
-                    <form className='profile__form' name='edit-profile-form' onSubmit={handleProfileChangesSubmit}>
-                        <div className='profile__title-container'>
-                            <AccountTitle>Привет, {name}!</AccountTitle>
-                        </div>
-                        <fieldset className='profile__fields-container'>
-                            <InputField labelText='Имя' type='text' required={true}
-                                        inputName='name' inputId='edit-name'
-                                        value='Виталий' onChange={(text) => {
-                            }}/>
-                            <InputField labelText='E-mail' type='email' required={true}
-                                        inputName='email' inputId='edit-email'
-                                        value='pochta@yandex.ru' onChange={(text) => {
-                            }}/>
-                        </fieldset>
+  const isValuesEqual = () => {
+    return values.name === currentUser.name && values.email === currentUser.email;
+  };
 
-                        <fieldset className='profile__buttons-container'>
-                            {profileUpdateError ? (
-                                <p className='profile__update-error'>{profileUpdateError}</p>) : null}
-                            <SubmitButton className='profile__save-button' text='Сохранить'/>
-                        </fieldset>
-                    </form>
-                ) : (
-                    <div className='profile__form'>
-                        <div className='profile__title-container'>
-                            <AccountTitle>Привет, {name}!</AccountTitle>
-                        </div>
+  return (
+    <main className='profile'>
+      <Header/>
+      <section className='profile__content'>
+        {isEditMode ? (
+          <form
+            className='profile__form'
+            name='edit-profile-form'
+            onSubmit={handleProfileChangesSubmit}
+            noValidate={true}
+          >
+            <div className='profile__title-container'>
+              <AccountTitle>Привет, {currentUser?.name}!</AccountTitle>
+            </div>
+            <fieldset className='profile__fields-container'>
+              <InputField labelText='Имя' type='text' required={true}
+                          inputName='name' inputId='edit-name'
+                          value={values.name} onChange={handleChange}
+                          disabled={isLoading}
+                          minLength={2} maxLength={30} errorText={errors.name}/>
+              <InputField labelText='E-mail' type='email' required={true}
+                          inputName='email' inputId='edit-email'
+                          value={values.email} onChange={handleChange}
+                          disabled={isLoading} errorText={errors.email}
+                          pattern="[\w\-+*\/=.!?'#%&\$\^\`~\{\|\}]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-]{2,4}"/>
+            </fieldset>
 
-                        <div className='profile__fields-container'>
-                            <StaticField className='profile__name-field'
-                                         labelText='Имя' value='Виталий'/>
-                            <StaticField className='profile__email-field'
-                                         labelText='E-mail' value='pochta@yandex.ru'/>
-                        </div>
+            <fieldset className='profile__buttons-container'>
+              {serverError ? (
+                <p className='profile__update-error'>{serverError}</p>) : null}
+              <SubmitButton
+                className='profile__save-button'
+                text='Сохранить'
+                disabled={isLoading || !isFormValid || isValuesEqual()}
+              />
+            </fieldset>
+          </form>
+        ) : (
+          <div className='profile__form'>
+            <div className='profile__title-container'>
+              <AccountTitle>Привет, {currentUser?.name}!</AccountTitle>
+            </div>
 
-                        <div className='profile__buttons-container'>
-                            <OutlineButton className='profile__edit-button' text='Редактировать'
-                                           onClick={handleEditProfileClick}/>
-                            <OutlineButton className='profile__logout-button' text='Выйти из аккаунта'
-                                           onClick={handleLogOutClick}/>
-                        </div>
-                    </div>
-                )}
-            </section>
-        </main>
-    );
+            <div className='profile__fields-container'>
+              <StaticField className='profile__name-field'
+                           labelText='Имя' value={currentUser?.name}/>
+              <StaticField className='profile__email-field'
+                           labelText='E-mail' value={currentUser?.email}/>
+            </div>
+
+            <div className='profile__buttons-container'>
+              <OutlineButton
+                className='profile__edit-button'
+                text='Редактировать'
+                onClick={onTurnEditModeOnClick}
+                disabled={isLoading}
+              />
+              <OutlineButton
+                className='profile__logout-button'
+                text='Выйти из аккаунта'
+                onClick={onSignOutClick}
+                disabled={isLoading}
+              />
+            </div>
+          </div>
+        )}
+      </section>
+    </main>
+  );
 }
 
 export default Profile;

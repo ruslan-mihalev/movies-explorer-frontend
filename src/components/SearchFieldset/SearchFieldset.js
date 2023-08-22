@@ -1,22 +1,33 @@
-import React, { useCallback } from 'react';
+import React, {useCallback} from 'react';
 
 import './SearchFieldset.css';
 
-function SearchField({ queryText, onQueryTextChanged }) {
+function SearchField({queryText, onQueryTextChange, disabled}) {
 
-    const queryTextChangeHandler = useCallback((e) => {
-        onQueryTextChanged(e.target.value);
-    }, [onQueryTextChanged]);
+  const queryTextChangeHandler = useCallback((e) => {
+    onQueryTextChange(e.target.value);
+  }, [onQueryTextChange]);
 
-    return (
-        <div className='search-fieldset'>
-            <input className='search-fieldset__input'
-                   name='query' id='search-query'
-                   type='text' placeholder='Фильм'
-                   value={queryText} onChange={queryTextChangeHandler}/>
-            <button className='search-fieldset__button' type='submit'/>
-        </div>
-    );
+  return (
+    <div className='search-fieldset'>
+      <input
+        className='search-fieldset__input'
+        name='query'
+        id='search-query'
+        type='text'
+        placeholder='Фильм'
+        value={queryText}
+        onChange={queryTextChangeHandler}
+        disabled={disabled}
+        required={true}
+      />
+      <button
+        className='search-fieldset__button'
+        type='submit'
+        disabled={disabled}
+      />
+    </div>
+  );
 }
 
 export default SearchField;

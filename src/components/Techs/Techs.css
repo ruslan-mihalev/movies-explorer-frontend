@@ -1,124 +1,124 @@
 .techs {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 70px 18px;
-    transition: padding-top .5s, padding-right .5s, padding-bottom .5s, padding-left .5s;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 70px 18px;
+  transition: padding-top .5s, padding-right .5s, padding-bottom .5s, padding-left .5s;
 }
 
 .techs__title {
-    letter-spacing: -0.72px;
+  letter-spacing: -0.72px;
 }
 
 .techs__subtitle {
-    margin: 60px 0 0;
-    padding: 0;
-    text-align: center;
-    font-weight: 400;
-    font-size: 30px;
-    letter-spacing: -1.2px;
-    color: #000;
-    transition: font-size .5s;
+  margin: 60px 0 0;
+  padding: 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
+  letter-spacing: -1.2px;
+  color: #000;
+  transition: font-size .5s;
 }
 
 .techs__text {
-    margin: 24px 0 0 !important;
-    text-align: center;
-    letter-spacing: -0.44px;
+  margin: 24px 0 0 !important;
+  text-align: center;
+  letter-spacing: -0.44px;
 }
 
 .techs__card-container {
-    box-sizing: border-box;
-    margin: 0 auto;
-    padding: 50px 0 0;
-    display: grid;
-    grid-template-columns: repeat(2, 84px);
-    grid-auto-rows: 57px;
-    justify-content: center;
-    gap: 10px;
-    list-style: none;
-    text-indent: 0;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 50px 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, 84px);
+  grid-auto-rows: 57px;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+  text-indent: 0;
 }
 
 .techs__card {
-    margin: 0;
-    padding: 0;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-weight: 400;
-    font-size: 12px;
-    letter-spacing: -0.48px;
-    background: #E8E8E8;
-    color: #000;
+  margin: 0;
+  padding: 0;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: -0.48px;
+  background: #E8E8E8;
+  color: #000;
 }
 
 @media screen and (min-width: 360px) {
-    .techs__card-container {
-        grid-template-columns: repeat(auto-fit, 84px);
-    }
+  .techs__card-container {
+    grid-template-columns: repeat(auto-fit, 84px);
+  }
 }
 
 @media screen and (min-width: 768px) {
-    .techs {
-        margin: 0;
-        padding: 90px 50px;
-        background: #F5F5F5;
-    }
+  .techs {
+    margin: 0;
+    padding: 90px 50px;
+    background: #F5F5F5;
+  }
 
-    .techs__title {
-        letter-spacing: -0.88px;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        -webkit-text-size-adjust: 100%;
-        -ms-text-size-adjust: 100%;
-        -moz-text-size-adjust: 100%;
-        text-rendering: optimizeLegibility;
-    }
+  .techs__title {
+    letter-spacing: -0.88px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
 
-    .techs__subtitle {
-        margin: 80px 0 0;
-        font-size: 50px;
-        line-height: 1.16;
-        letter-spacing: -2px;
-    }
+  .techs__subtitle {
+    margin: 80px 0 0;
+    font-size: 50px;
+    line-height: 1.16;
+    letter-spacing: -2px;
+  }
 
-    .techs__text {
-        margin: 22px auto 0 !important;
-        max-width: 460px;
-        letter-spacing: -0.48px;
-    }
+  .techs__text {
+    margin: 22px auto 0 !important;
+    max-width: 460px;
+    letter-spacing: -0.48px;
+  }
 
-    .techs__card-container {
-        padding: 84px 0 0;
-    }
+  .techs__card-container {
+    padding: 84px 0 0;
+  }
 }
 
 @media screen and (min-width: 1024px) {
-    .techs {
-        margin: 0;
-        padding: 100px 70px;
-    }
+  .techs {
+    margin: 0;
+    padding: 100px 70px;
+  }
 
-    .techs__subtitle {
-        margin: 90px 0 0;
-    }
+  .techs__subtitle {
+    margin: 90px 0 0;
+  }
 
-    .techs__text {
-        margin: 26px auto 0 !important;
-        letter-spacing: -0.56px;
-    }
+  .techs__text {
+    margin: 26px auto 0 !important;
+    letter-spacing: -0.56px;
+  }
 
-    .techs__card-container {
-        padding: 100px 0 0;
-        grid-template-columns: repeat(auto-fit, 90px);
-        grid-auto-rows: 60px;
-    }
+  .techs__card-container {
+    padding: 100px 0 0;
+    grid-template-columns: repeat(auto-fit, 90px);
+    grid-auto-rows: 60px;
+  }
 
-    .techs__card {
-        font-size: 14px;
-        letter-spacing: -0.56px;
-    }
+  .techs__card {
+    font-size: 14px;
+    letter-spacing: -0.56px;
+  }
 }

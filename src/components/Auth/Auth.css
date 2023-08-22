@@ -1,109 +1,133 @@
 .auth {
-    box-sizing: border-box;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding: 0 30px;
-    min-width: 320px;
-    min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0 30px;
+  min-width: 320px;
+  min-height: 100vh;
 }
 
 .auth__form {
-    box-sizing: border-box;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    align-items: stretch;
-    margin: 0 auto;
-    padding: 0;
-    width: 100%;
-    max-width: 396px;
-    min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  max-width: 396px;
+  min-height: 100vh;
 }
 
 .auth__title-container {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: 50px;
-    padding: 56px 0 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  padding: 56px 0 16px;
 }
 
 .auth__fields-container {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 266px;
-    border: none;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 266px;
+  border: none;
 }
 
 .auth__buttons-container {
-    box-sizing: border-box;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: stretch;
-    border: none;
-    gap: 14px;
-    margin: 0;
-    padding: 96px 0 30px;
-    min-width: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  border: none;
+  gap: 14px;
+  margin: 0;
+  padding: 44px 0 30px;
+  min-width: 0;
+}
+
+.auth__submit-error {
+  display: block;
+  visibility: hidden;
+  min-height: 14px;
+  font-weight: 400;
+  font-size: 11px;
+  color: #FF004C;
+  text-align: center;
+}
+
+.auth__submit-error_visible {
+  visibility: visible;
 }
 
 .auth__submit-button {
-    background: #FF6838 !important;
+  background: #FF6838;
+}
+
+.auth__submit-button:disabled {
+  color: #C2C2C2;
+  background: #F8F8F8;
 }
 
 .auth__link-label {
-    display: block;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    font-weight: 400;
-    font-size: 12px;
-    color: #A0A0A0;
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: 12px;
+  color: #A0A0A0;
 }
 
 .auth__link-text {
-    margin: 0 0 0 6px;
-    padding: 0;
-    color: #FF6838;
-    cursor: pointer;
+  margin: 0 0 0 6px;
+  padding: 0;
+  color: #FF6838;
+  cursor: pointer;
 }
 
 .auth__link-text:hover {
-    opacity: .7;
-    transition: opacity .2s;
+  opacity: .7;
+  transition: opacity .2s;
 }
 
 @media screen and (min-width: 768px) {
-    .auth__form {
-        min-height: 586px;
-        padding: 0;
-    }
+  .auth__form {
+    min-height: 586px;
+    padding: 0;
+  }
 
-    .auth__title-container {
-        justify-content: flex-start;
-        align-items: flex-start;
-        gap: 40px;
-        padding: 13px 0 4px;
-    }
+  .auth__title-container {
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 13px 0 4px;
+  }
 
-    .auth__buttons-container {
-        padding: 32px 0 13px;
-        gap: 16px;
-    }
+  .auth__fields-container {
+    flex: 1;
+    padding: 36px 0 0;
+  }
 
-    .auth__link-label {
-        font-size: 14px;
-    }
+  .auth__buttons-container {
+    padding: 8px 0 13px;
+    gap: 16px;
+  }
+
+  .auth__link-label {
+    font-size: 14px;
+  }
 }
