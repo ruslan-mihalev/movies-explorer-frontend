@@ -10,18 +10,18 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 function Main() {
-    return (
-        <main className="main">
-            <Promo>
-                <Header/>
-            </Promo>
-            <NavTab/>
-            <AboutProject/>
-            <Techs/>
-            <AboutMe/>
-            <Footer/>
-        </main>
-    );
+  return (
+    <main className="main">
+      <Promo>
+        <Header/>
+      </Promo>
+      <NavTab/>
+      <AboutProject/>
+      <Techs/>
+      <AboutMe/>
+      <Footer/>
+    </main>
+  );
 }
 
 export default Main;

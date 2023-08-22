@@ -8,11 +8,11 @@ import {FavoriteMoviesContextProvider} from './contexts/FavoriteMoviesContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <BrowserRouter>
-        <FavoriteMoviesContextProvider>
-            <App/>
-        </FavoriteMoviesContextProvider>
-    </BrowserRouter>
+  <BrowserRouter>
+    <FavoriteMoviesContextProvider>
+      <App/>
+    </FavoriteMoviesContextProvider>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

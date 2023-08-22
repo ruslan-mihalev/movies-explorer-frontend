@@ -1,19 +1,19 @@
 .get-more-movies {
-    box-sizing: border-box;
-    display: flex;
-    margin: 0;
-    padding: 50px 10px 80px;
-    min-height: 166px;
+  box-sizing: border-box;
+  display: flex;
+  margin: 0;
+  padding: 50px 10px 80px;
+  min-height: 166px;
 }
 
 @media screen and (min-width: 768px) {
-    .get-more-movies {
-        padding: 50px 30px 80px;
-    }
+  .get-more-movies {
+    padding: 50px 30px 80px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
-    .get-more-movies {
-        padding: 50px 70px 80px;
-    }
+  .get-more-movies {
+    padding: 50px 70px 80px;
+  }
 }

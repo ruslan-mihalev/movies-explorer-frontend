@@ -1,27 +1,27 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 
 export function useMediaQuery(query) {
-    const getMatches = (query) => {
-        return window.matchMedia(query).matches;
+  const getMatches = (query) => {
+    return window.matchMedia(query).matches;
+  }
+
+  const [matches, setMatches] = useState(getMatches(query));
+
+  useEffect(() => {
+    const matchMedia = window.matchMedia(query);
+
+    function handleChange() {
+      setMatches(getMatches(query));
     }
 
-    const [matches, setMatches] = useState(getMatches(query));
+    handleChange();
 
-    useEffect(() => {
-        const matchMedia = window.matchMedia(query);
+    matchMedia.addEventListener('change', handleChange);
 
-        function handleChange() {
-            setMatches(getMatches(query));
-        }
+    return () => {
+      matchMedia.removeEventListener('change', handleChange);
+    }
+  }, [query]);
 
-        handleChange();
-
-        matchMedia.addEventListener('change', handleChange);
-
-        return () => {
-            matchMedia.removeEventListener('change', handleChange);
-        }
-    }, [query]);
-
-    return matches;
+  return matches;
 }

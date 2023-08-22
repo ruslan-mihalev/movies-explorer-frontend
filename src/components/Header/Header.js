@@ -7,16 +7,16 @@ import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 
 function Header() {
 
-    const currentUser = useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
 
-    return (
-        <header className='header'>
-            <div className='header__logo-container'>
-                <Logo />
-            </div>
-            <Navigation className='header__navigation-container' isAuthorized={!!currentUser} />
-        </header>
-    );
+  return (
+    <header className='header'>
+      <div className='header__logo-container'>
+        <Logo/>
+      </div>
+      <Navigation className='header__navigation-container' isAuthorized={!!currentUser}/>
+    </header>
+  );
 }
 
 export default Header;
